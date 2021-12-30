@@ -9,3 +9,5 @@
 `git clone -b chrome-ext https://gitlab.com/nairvarun/dots.git`
 - [vscode](https://gitlab.com/nairvarun/dots/-/tree/vscode)<br>
 `git clone -b vscode https://gitlab.com/nairvarun/dots.git`
+- [windows](https://gitlab.com/nairvarun/dots/-/tree/windows)<br>
+`git clone -b windows https://gitlab.com/nairvarun/dots.git`
