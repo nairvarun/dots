@@ -1,6 +1,6 @@
 # dots
 
-<img src="./media/chika.gif" alt="[gif]" width="33%"/>
+<img src="./media/chika.gif" alt="[gif]" width="25%"/>
 
 ## branches
 - [neovim](https://gitlab.com/nairvarun/dots/-/tree/neovim)<br>
