@@ -1,6 +1,6 @@
 # dots
 
-*files are stored in their respective branches for easier access*
+<img src="./media/chika.gif" alt="[gif]" width="33%"/>
 
 ## branches
 - [neovim](https://gitlab.com/nairvarun/dots/-/tree/neovim)<br>
