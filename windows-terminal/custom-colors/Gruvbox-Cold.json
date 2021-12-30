@@ -1,0 +1,23 @@
+{
+	"background": "#0B101E",
+	"black": "#1E1E1E",
+	"blue": "#377375",
+	"brightBlack": "#7F7061",
+	"brightBlue": "#719586",
+	"brightCyan": "#7DB669",
+	"brightGreen": "#AAB01E",
+	"brightPurple": "#7B56CC",
+	"brightRed": "#F73028",
+	"brightWhite": "#E6D4A3",
+	"brightYellow": "#F7B125",
+	"cursorColor": "#FFFFFF",
+	"cyan": "#578E57",
+	"foreground": "#E6D4A3",
+	"green": "#868715",
+	"name": "Gruvbox Cold",
+	"purple": "#3533C7",
+	"red": "#BE0F17",
+	"selectionBackground": "#2B0305",
+	"white": "#978771",
+	"yellow": "#CC881A"
+}
