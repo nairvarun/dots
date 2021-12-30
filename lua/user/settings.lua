@@ -26,9 +26,7 @@ vim.opt.wrap			= false
 vim.opt.showtabline		= 1
 
 local colorscheme = 'tokyonight'
-
 local status_ok, _ = pcall(vim.cmd, 'colorscheme ' .. colorscheme )
-
 if not status_ok then
 	vim.cmd 'PackerSync'
 	vim.notify('installing ' .. colorscheme .. '. pls restart nvim once done.')
