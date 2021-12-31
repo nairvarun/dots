@@ -17,8 +17,12 @@ end
 return packer.startup({function(use)
 	use 'wbthomason/packer.nvim' -- so that packer manages itself
 	
-	-- use 'nvim-lua/popup.nvim'		-- required by other plugins
-	-- use 'nvim-lua/plenary.nvim'		-- required by other plugins
+	use {
+		'github/copilot.vim',
+		opt = true
+	}
+	use 'nvim-lua/popup.nvim'		-- required by other plugins
+	use 'nvim-lua/plenary.nvim'		-- required by other plugins
 	use {
 		'wfxr/minimap.vim', -- requires 'https://github.com/wfxr/code-minimap' (cargo install --locked code-minimap)
 		opt = true,
@@ -30,6 +34,19 @@ return packer.startup({function(use)
 		opt = true,
 		ft = 'markdown'
 	}
+	use "hrsh7th/nvim-cmp" 
+	use "hrsh7th/cmp-buffer" 
+	use "hrsh7th/cmp-path" 
+	use "hrsh7th/cmp-cmdline" 
+	use "hrsh7th/cmp-nvim-lua"
+	use "hrsh7th/cmp-nvim-lsp"
+	use "saadparwaiz1/cmp_luasnip" 
+
+	use "L3MON4D3/LuaSnip" 
+	use "rafamadriz/friendly-snippets"
+
+	use "neovim/nvim-lspconfig" 
+	use "williamboman/nvim-lsp-installer"
 
 	use 'folke/tokyonight.nvim'
 	-- use 'morhetz/gruvbox'
@@ -46,9 +63,9 @@ return packer.startup({function(use)
 	end
 end,
 config = {
-	-- display = {
-	-- 	open_fn = require('packer.util').float
-	-- },
+	display = {
+		open_fn = require('packer.util').float
+	},
 	profile = {
 		enable = true,
 		threshold = 0
