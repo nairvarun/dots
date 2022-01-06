@@ -28,7 +28,7 @@ local schemas = {
       ".eslintrc.json",
       ".eslintrc",
     },
-    url = "https://json.schemastore.org/eslintrc.son",
+    url = "https://json.schemastore.org/eslintrc.json",
   },
   {
     description = "Bucklescript config",
@@ -180,4 +180,4 @@ local opts = {
   },
 }
 
-return optsj
+return opts

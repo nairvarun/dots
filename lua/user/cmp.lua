@@ -1,109 +1,72 @@
+-- require("cmp")
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
+	vim.notify('cmp_status_ok: false [.../nvim/lua/user/cmp.lua]')
 	return
 end
 
+-- require("luasnip")
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
+	vim.notify('snip_status_ok: false [.../nvim/lua/user/cmp.lua]')
 	return
 end
 
-require("luasnip/loaders/from_vscode").lazy_load()
+require("luasnip/loaders/from_vscode").lazy_load()		-- idk what this does but it should make sure lausnip work
 
-local check_backspace = function()
-	local col = vim.fn.col "." - 1
-	return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
-end
-
---   פּ ﯟ   some other good icons
-local kind_icons = {
-	Text = "",
-	Method = "m",
-	Function = "",
-	Constructor = "",
-	Field = "",
-	Variable = "",
-	Class = "",
-	Interface = "",
-	Module = "",
-	Property = "",
-	Unit = "",
-	Value = "",
-	Enum = "",
-	Keyword = "",
-	Snippet = "",
-	Color = "",
-	File = "",
-	Reference = "",
-	Folder = "",
-	EnumMember = "",
-	Constant = "",
-	Struct = "",
-	Event = "",
-	Operator = "",
-	TypeParameter = "",
+local kind_info = {
+	Text 			= "{Text}",
+	Method 			= "{Method}",
+	Function 		= "{Function}",
+	Constructor 	= "{Constructor}",
+	Field 			= "{Field}",
+	Variable 		= "{Variable}",
+	Class 			= "{Class}",
+	Interface 		= "{Interface}",
+	Module 			= "{Module}",
+	Property 		= "{Property}",
+	Unit 			= "{Unit}",
+	Value 			= "{Value}",
+	Enum 			= "{Enum}",
+	Keyword 		= "{Keyword}",
+	Snippet 		= "{Snippet}",
+	Color 			= "{Color}",
+	File 			= "{File}",
+	Reference 		= "{Reference}",
+	Folder 			= "{Folder}",
+	EnumMember		= "{EnumMember}",
+	Constant		= "{Constant}",
+	Struct			= "{Struct}",
+	Event			= "{Event}",
+	Operator		= "{Operator}",
+	TypeParameter 	= "{TypeParameter}",
 }
--- find more here: https://www.nerdfonts.com/cheat-sheet
 
 cmp.setup {
 	snippet = {
 		expand = function(args)
-			luasnip.lsp_expand(args.body) -- For `luasnip` users.
+			luasnip.lsp_expand(args.body)
 		end,
 	},
 	mapping = {
-		["<C-k>"] = cmp.mapping.select_prev_item(),
-		["<C-j>"] = cmp.mapping.select_next_item(),
-		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-		-- ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-		-- ["<C-j>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }), -- workaround for as ctrl + enter
-		["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-		["<C-e>"] = cmp.mapping {
+		["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), {"i", "c"}),
+		["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), {"i", "c"}),
+		["<C-f>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }), -- workaround for as ctrl + enter
+		["<C-x>"] = cmp.mapping {
 			i = cmp.mapping.abort(),
 			c = cmp.mapping.close(),
 		},
-		-- Accept currently selected item. If none selected, `select` first item.
-		-- Set `select` to `false` to only confirm explicitly selected items.
-		["<CR>"] = cmp.mapping.confirm { select = true },
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expandable() then
-				luasnip.expand()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			elseif check_backspace() then
-				fallback()
-			else
-				fallback()
-			end
-		end, {
-		"i",
-		"s",
-	}),
-	["<S-Tab>"] = cmp.mapping(function(fallback)
-		if cmp.visible() then
-			cmp.select_prev_item()
-		elseif luasnip.jumpable(-1) then
-			luasnip.jump(-1)
-		else
-			fallback()
-		end
-	end, {
-	"i",
-	"s",
-}),
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
+		-- for super tab:
+		-- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
   },
   formatting = {
-	  fields = { "kind", "abbr", "menu" },
+	  fields = {"abbr", "kind", "menu"},
 	  format = function(entry, vim_item)
-		  -- Kind icons
-		  vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-		  -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+		  vim_item.kind = string.format("%s", kind_info[vim_item.kind])
 		  vim_item.menu = ({
-			  nvim_lsp = "[LSP]",
 			  luasnip = "[Snippet]",
+			  nvim_lsp = "[LSP]",
 			  buffer = "[Buffer]",
 			  path = "[Path]",
 		  })[entry.source.name]
@@ -111,20 +74,30 @@ cmp.setup {
 	  end,
   },
   sources = {
-	  { name = "nvim_lsp" },
-	  { name = "luasnip" },
-	  { name = "buffer" },
-	  { name = "path" },
-  },
-  confirm_opts = {
-	  behavior = cmp.ConfirmBehavior.Replace,
-	  select = false,
+	  {name = "nvim_lsp"},
+	  {name = "luasnip"},
+	  {name = "buffer"},
+	  {name = "path"},
   },
   documentation = {
-	  border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+	  border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"},
   },
   experimental = {
 	  ghost_text = true,
 	  native_menu = false,
   },
 }
+
+cmp.setup.cmdline('/', {
+	sources = {
+		{ name = 'buffer' }
+	}
+})
+
+cmp.setup.cmdline(':', {
+	sources = cmp.config.sources({
+		{ name = 'path' }
+	}, {
+		{ name = 'cmdline' }
+	})
+})

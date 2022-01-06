@@ -14,12 +14,16 @@ vim.g.mapleader = ' '
 -- vanilla vim maps{{{
 
 -- jk ==> <esc>{{{
+vim.api.nvim_set_keymap('i', 'kj', '<esc>', {noremap = true})
+vim.api.nvim_set_keymap('v', 'kj', '<esc>', {noremap = true})
 vim.api.nvim_set_keymap('i', 'jk', '<esc>', {noremap = true})
 vim.api.nvim_set_keymap('v', 'jk', '<esc>', {noremap = true})
+vim.api.nvim_set_keymap('c', 'jk', '<C-u><bs>', {noremap = true})
+vim.api.nvim_set_keymap('c', 'jk', '<C-u><bs>', {noremap = true})
 --}}}
 
 -- visual block workaround for windows terminal{{{
-vim.api.nvim_set_keymap('n', ',v', '<C-v>', {noremap = true})
+vim.api.nvim_set_keymap('n', 'vf', '<C-v>', {noremap = true})
 --}}}
 
 -- wrap X around text{{{
@@ -89,9 +93,9 @@ vim.api.nvim_set_keymap('n', '<A-t>', ':tabnew<CR>', {noremap = true})
 -- vim.api.nvim_set_keymap('n', '<leader>h', ':tabprevious<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<A-m>', '<C-w>T', {noremap = true})
 --}}}
-  
+
 -- clear search highlights{{{
-vim.api.nvim_set_keymap('n', '<A-/>', '/aaaaaaaaaaaaaaaaaaaaa<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<A-/>', ':noh<CR>', {noremap = true})
 --}}}
 
 --}}}

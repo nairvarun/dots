@@ -13,3 +13,4 @@ colors:
 	https://github.com/mcchrish/vim-no-color-collections
 	https://github.com/rafi/awesome-vim-colorschemes
 	https://github.com/mswift42/vim-themes
+

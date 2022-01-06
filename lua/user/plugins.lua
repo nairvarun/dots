@@ -16,7 +16,6 @@ end
 
 return packer.startup({function(use)
 	use 'wbthomason/packer.nvim' -- so that packer manages itself
-	
 	use {
 		'github/copilot.vim',
 		opt = true
@@ -29,23 +28,23 @@ return packer.startup({function(use)
 		cmd = 'MinimapToggle'
 	}
 	use {
-		'iamcco/markdown-preview.nvim', 
+		'iamcco/markdown-preview.nvim',
 		run = 'cd app && yarn install',
 		opt = true,
 		ft = 'markdown'
 	}
-	use "hrsh7th/nvim-cmp" 
-	use "hrsh7th/cmp-buffer" 
-	use "hrsh7th/cmp-path" 
-	use "hrsh7th/cmp-cmdline" 
+	use "hrsh7th/nvim-cmp"
+	use "hrsh7th/cmp-buffer"
+	use "hrsh7th/cmp-path"
+	use "hrsh7th/cmp-cmdline"
 	use "hrsh7th/cmp-nvim-lua"
 	use "hrsh7th/cmp-nvim-lsp"
-	use "saadparwaiz1/cmp_luasnip" 
 
-	use "L3MON4D3/LuaSnip" 
+	use "L3MON4D3/LuaSnip"
+	use "saadparwaiz1/cmp_luasnip"
 	use "rafamadriz/friendly-snippets"
 
-	use "neovim/nvim-lspconfig" 
+	use "neovim/nvim-lspconfig"
 	use "williamboman/nvim-lsp-installer"
 
 	use 'folke/tokyonight.nvim'
