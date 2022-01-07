@@ -33,7 +33,6 @@ function prompt {
 	}
 
     Write-Host (" ->") -NoNewLine -ForegroundColor Green
-
 	return " "
 }
 #}}}
@@ -43,14 +42,13 @@ function msto {
     C:\Users\nairv\AppData\Local\Microsoft\Teams\Update.exe --processStart "Teams.exe"
 }
 #}}}
-
 # close ms teams and all its child processes{{{
 function mstc {
     TASKKILL /F /IM Teams.exe /T
 }
 #}}}
 
-# open brave browser (to specified website){{{
+# open brave browser (to specified website or search){{{
 function brv {
 
 	param(
@@ -81,3 +79,17 @@ function dl {
 	docker exec -it $ContainerName	env TERM=xterm-256color bash -l
 }
 #}}}
+
+# open all files of a certain file type{{{
+function oft {
+
+	param (
+		[ArgumentCompleter({ (Get-Childitem | Select-Object Extension -Unique).Extension })] $FileType
+	)
+	$Files = @(Get-Childitem *$FileType)
+	for($i = 0; $i -lt $Files.Count; $i++) {
+		& $Files[$i]
+	}
+}
+#}}}
+
