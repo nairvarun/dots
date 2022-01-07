@@ -1,0 +1,13 @@
+services:
+  dev: 
+    build:
+      context: .
+      args:
+        USER_NAME: ${USER_NAME:?err}
+        SUDO_PASSWORD: ${SUDO_PASSWORD:?err}
+    image: ${IMAGE_NAME:?err}
+    volumes: 
+      - type: bind
+        source: ${BMNT_SOURCE:?err}
+        target: ${BMNT_TARGET:?err}
+    tty: true
