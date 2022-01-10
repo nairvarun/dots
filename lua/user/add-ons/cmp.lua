@@ -1,19 +1,21 @@
--- require("cmp")
+-- [protected call] require("cmp")
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
-	vim.notify('cmp_status_ok: false [.../nvim/lua/user/cmp.lua]')
+	vim.notify('cmp_status_ok: false [.../nvim/lua/user/add-ons/cmp.lua]')
 	return
 end
 
--- require("luasnip")
+-- [protected call] require("luasnip")
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
-	vim.notify('snip_status_ok: false [.../nvim/lua/user/cmp.lua]')
+	vim.notify('snip_status_ok: false [.../nvim/lua/user/add-ons/cmp.lua]')
 	return
 end
 
-require("luasnip/loaders/from_vscode").lazy_load()		-- idk what this does but it should make sure lausnip work
+-- idk what this does but it should make sure lausnip work
+require("luasnip/loaders/from_vscode").lazy_load()
 
+-- cmp completely menu kind info
 local kind_info = {
 	Text 			= "{Text}",
 	Method 			= "{Method}",
@@ -49,16 +51,34 @@ cmp.setup {
 		end,
 	},
 	mapping = {
-		["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), {"i", "c"}),
-		["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), {"i", "c"}),
-		["<C-f>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }), -- workaround for as ctrl + enter
-		["<C-x>"] = cmp.mapping {
-			i = cmp.mapping.abort(),
-			c = cmp.mapping.close(),
-		},
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		-- for super tab:
-		-- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
+		-- ["<CR>"] = cmp.mapping.confirm { select = true },
+		["<CR>"] = cmp.mapping(function(fallback)
+			if luasnip.expandable() then
+				luasnip.expand()
+			else
+				fallback()
+			end
+		end, {"i", "s", "c"}),
+
+		["<A-j>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			elseif luasnip.jumpable(1) then
+				luasnip.jump(1)
+			else
+				fallback()
+			end
+		end, {"i", "s", "c"}),
+
+		["<A-k>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, {"i", "s", "c"}),
   },
   formatting = {
 	  fields = {"abbr", "kind", "menu"},
@@ -83,21 +103,21 @@ cmp.setup {
 	  border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"},
   },
   experimental = {
-	  ghost_text = true,
+	  ghost_text = false,
 	  native_menu = false,
   },
 }
 
 cmp.setup.cmdline('/', {
 	sources = {
-		{ name = 'buffer' }
+		{name = 'buffer'}
 	}
 })
 
 cmp.setup.cmdline(':', {
 	sources = cmp.config.sources({
-		{ name = 'path' }
+		{name = 'path'}
 	}, {
-		{ name = 'cmdline' }
+		{name = 'cmdline'}
 	})
 })

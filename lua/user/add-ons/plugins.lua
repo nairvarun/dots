@@ -10,7 +10,7 @@ end
 -- calls require("packer"). if it doesnt work, it'll notify and not throw a big error. if it works, it'll return require("packer") as packer.
 local ok, packer = pcall(require, "packer")
 if not ok then
-	vim.notify('something went worng with packer')
+	vim.notify('protected call failed in **/nvim/lua/user/add-ons/plugins.lua')
 end
 
 
@@ -23,15 +23,15 @@ return packer.startup({function(use)
 	use 'nvim-lua/popup.nvim'		-- required by other plugins
 	use 'nvim-lua/plenary.nvim'		-- required by other plugins
 	use {
-		'wfxr/minimap.vim', -- requires 'https://github.com/wfxr/code-minimap' (cargo install --locked code-minimap)
+		'wfxr/minimap.vim',			-- requires 'https://github.com/wfxr/code-minimap' (cargo install --locked code-minimap)
 		opt = true,
-		cmd = 'MinimapToggle'
+		cmd = 'MinimapToggle',
 	}
 	use {
 		'iamcco/markdown-preview.nvim',
 		run = 'cd app && yarn install',
 		opt = true,
-		ft = 'markdown'
+		ft = 'markdown',
 	}
 	use "hrsh7th/nvim-cmp"
 	use "hrsh7th/cmp-buffer"

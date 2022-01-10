@@ -1,8 +1,12 @@
---  https://stackoverflow.com/questions/640351/how-can-i-spellcheck-in-gvim
---  https://stackoverflow.com/questions/6008921/how-to-change-the-highlight-style-in-vim-spellcheck
+require "user/vanilla"
+require "user/add-ons"
+-- require "user/tst"
 
-require "user/plugins"
-require "user/settings"
-require "user/keymaps"
-require "user/cmp"
-require "user/lsp"
+
+-- function _G.LoadAll()
+-- 	require "user/vanilla"
+-- 	require "user/add-ons"
+-- 	-- require "user/tst"
+-- end
+-- 
+-- vim.api.nvim_set_keymap('n', '<A-S-j>', ':lua LoadAll()<CR>', {noremap = true})
