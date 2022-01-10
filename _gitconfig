@@ -13,4 +13,3 @@
 	ss 	= switch
 	p	= pull origin
 	pp	= push origin
-	test
