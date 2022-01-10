@@ -12,7 +12,5 @@
 	bb	= branch -a
 	ss 	= switch
 	p	= pull origin
-	pp	= pull origin --all
-	P	= push origin
-	PP	= push origin --all
+	p	= push origin
 
