@@ -1,0 +1,13 @@
+[user]
+	#email = 74466129+nairvarun@users.noreply.github.com
+	email = 10447555-nairvarun@users.noreply.gitlab.com
+	name = varun
+[alias]
+	s 	= status
+	a 	= add
+	aa 	= add .
+	c 	= commit
+	cc 	= commit -m '.'
+	b	= branch
+	bb	= branch -a
+	ss 	= switch
