@@ -14,3 +14,5 @@
 	p	= pull origin
 	pp	= pull origin --all
 	P	= push origin
+	PP	= push origin --all
+
