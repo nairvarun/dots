@@ -1,6 +1,7 @@
 --region <leader> ==> spacebar
 vim.api.nvim_set_keymap('', ' ', '<Nop>', {noremap = true})
 vim.g.mapleader = ' '
+-- vim.api.nvim_set_keymap('n', 'A-q', ':echo "aa"<CR>', {noremap = true})
 --endregion
 
 --region jk ==> <esc>{{
