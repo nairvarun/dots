@@ -6,10 +6,10 @@
 	s 	= status
 	a 	= add
 	aa 	= add .
-	c 	= commit
+	c 	= commit -m 
 	cc 	= commit -m '.'
 	b	= branch
 	bb	= branch -a
 	ss 	= switch
-	p	= pull origin
-	pp	= push origin
+	g	= log --graph
+	gg	= log --graph --all
