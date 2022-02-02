@@ -65,7 +65,19 @@ function dl {
         [ArgumentCompleter({ docker ps --format "{{.Names}}" })]$ContainerName	
     )
 
-    docker exec -it $ContainerName	env TERM=xterm-256color bash -l
+    docker exec -it $ContainerName env TERM=xterm-256color bash -l
+}
+
+# get into a docker container's root shell
+function dlr {
+    # ref:
+    # 	- https://powershell.one/powershell-internals/attributes/auto-completion
+    
+    param (
+        [ArgumentCompleter({ docker ps --format "{{.Names}}" })]$ContainerName	
+    )
+
+    docker exec -itu0 $ContainerName env TERM=xterm-256color bash -l
 }
 
 # open all files of a certain file type
@@ -137,3 +149,6 @@ function winsay {
     #                 ||     ||
     #endregion other
 }
+
+# alias: g ==> git
+New-Alias -Name "g" -value git
