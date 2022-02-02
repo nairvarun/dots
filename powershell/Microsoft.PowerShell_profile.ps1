@@ -56,6 +56,23 @@ function brv {
     }
 }
 
+# open librewolf (to specified website or search)
+function lw {
+
+    param(
+        $Query,
+        $QueryType=" "
+    )	
+
+    if ($QueryType -eq "d") {
+        start "C:\Program Files\LibreWolf\librewolf.exe" duckduckgo.com/?q=$($Query.Replace(' ', '+'))
+    } elseif ($QueryType -eq "g") {
+        start "C:\Program Files\LibreWolf\librewolf.exe" google.com/search?q=$($Query.Replace(' ', '+'))
+    } else {
+        start "C:\Program Files\LibreWolf\librewolf.exe" $Query
+    }
+}
+
 # get into a docker container's shell
 function dl {
     # ref:
@@ -108,47 +125,7 @@ function winsay {
                 ||     ||
     "
     Write-Host ($text_output) -ForegroundColor Blue
-
-    #region other ascii
-    # ▄██████████████▄▐█▄▄▄▄█▌
-    # ██████▌▄▌▄▐▐▌███▌▀▀██▀▀
-    # ████▄█▌▄▌▄▐▐▌▀███▄▄█▌
-    # ▄▄▄▄▄██████████████▀
-
-    #        _                        
-    #        \`*-.                    
-    #         )  _`-.                 
-    #        .  : `. .                
-    #        : _   '  \               
-    #        ; *` _.   `*-._          
-    #        `-.-'          `-.       
-    #          ;       `       `.     
-    #          :.       .        \    
-    #          . \  .   :   .-'   .   
-    #          '  `+.;  ;  '      :   
-    #          :  '  |    ;       ;-. 
-    #          ; '   : :`-:     _.`* ;
-    # [bug] .*' /  .*' ; .*`- +'  `*' 
-    #       `*-*   `*-*  `*-*'
-
-    # Whale by Riitta Rasimus
-    #        .
-    #       ":"
-    #     ___:____     |"\/"|
-    #   ,'        `.    \  /
-    #   |  O        \___/  |
-    # ~^~^~^~^~^~^~^~^~^~^~^~^~
-
-    #  _________ 
-    # < default >
-    #  --------- 
-    #         \   ^__^
-    #          \  (oo)\_______
-    #             (__)\       )\/\
-    #                 ||----w |
-    #                 ||     ||
-    #endregion other
 }
 
 # alias: g ==> git
-New-Alias -Name "g" -value git
+Set-Alias -Name "g" -value git
