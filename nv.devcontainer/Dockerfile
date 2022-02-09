@@ -26,6 +26,7 @@ RUN useradd --create-home --shell /bin/bash nv                                  
                 # rustc                                                                          \
                 # default-jdk                                                                    \
                 # gnu-smalltalk                                                                  \
+                # ghc                                                                            \
                 # swi-prolog                                                                     \
                 # cowsay                                                                         \
                 sudo
