@@ -1,0 +1,15 @@
+services:
+  dev: 
+    build:
+      context: .
+      args:
+        USER_NAME: ${USER_NAME:?err}
+        USER_PASSWORD: ${USER_PASSWORD:?err}
+    image:  ${IMAGE_NAME:?err}
+    volumes: 
+      - type: bind
+        source: ${BMNT_SOURCE:?err}
+        target: ${BMNT_TARGET:?err}
+    ports: 
+      - "8888:8888"
+    tty: true
