@@ -1,6 +1,0 @@
-{
-    "name": "vsc deb dev",
-    "build": {
-        "context": "."
-    }
-}
