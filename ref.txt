@@ -1,0 +1,13 @@
+https://code.visualstudio.com/docs/remote/create-dev-container
+https://code.visualstudio.com/docs/remote/create-dev-container
+https://code.visualstudio.com/remote/advancedcontainers/add-nonroot-user
+https://code.visualstudio.com/docs/remote/devcontainerjson-reference
+https://code.visualstudio.com/docs/remote/containers
+https://stackoverflow.com/questions/67773973/how-to-run-docker-compose-inside-vs-code-devcontainer
+https://github.com/microsoft/vscode-dev-containers/blob/main/container-templates/docker-compose/.devcontainer/docker-compose.yml
+https://github.com/microsoft/vscode-dev-containers/blob/main/container-templates/docker-compose/.devcontainer/devcontainer.json
+https://spin.atomicobject.com/2021/06/16/docker-development-container/
+https://dzone.com/articles/vs-code-remote-development-with-docker-compose
+https://hub.docker.com/_/microsoft-vscode-devcontainers
+https://linuxtut.com/en/776baeea9b26079a2add/
+https://medium.com/@jtucker/docker-compose-devcontainer-private-artifacts-feed-7c2cca435e36
