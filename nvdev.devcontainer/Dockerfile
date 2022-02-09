@@ -14,7 +14,7 @@ RUN useradd --create-home --shell /bin/bash nv                                  
                 # vi                                                                             \
                 vim                                                                            \
                 # neovim                                                                         \
-                chezscheme                                                                     \
+                # chezscheme                                                                     \
                 # chicken-bin                                                                    \
                 # build-essential                                                                \
                 # gdb                                                                            \
