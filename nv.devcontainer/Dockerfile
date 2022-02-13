@@ -5,14 +5,14 @@ RUN useradd --create-home --shell /bin/bash nv                                  
     echo "nv:1234" | chpasswd                                                               && \
     echo "export PATH=/home/nv/.local/bin:${PATH}" >> /home/nv/.bashrc                      && \
     echo "alias jn='jupyter notebook --ip 0.0.0.0 --no-browser'" >> /home/nv/.bashrc        && \
-    mkdir /workspace                                                                        && \
+    # mkdir /workspace                                                                        && \
     apt update                                                                              && \
     apt upgrade                                                                             && \
     apt install -y                                                                             \
                 git                                                                            \
                 # nano                                                                           \
                 # vi                                                                             \
-                vim                                                                            \
+                # vim                                                                            \
                 # neovim                                                                         \
                 # chezscheme                                                                     \
                 # chicken-bin                                                                    \
@@ -29,10 +29,11 @@ RUN useradd --create-home --shell /bin/bash nv                                  
                 # ghc                                                                            \
                 # swi-prolog                                                                     \
                 # cowsay                                                                         \
+                # neofetch                                                                       \
                 sudo
 
-COPY ../ /workspace/
+# COPY ../ /workspace/
 
-WORKDIR /workspace/
+# WORKDIR /workspace/
 
 USER nv
