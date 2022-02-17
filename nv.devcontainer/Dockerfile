@@ -30,6 +30,7 @@ RUN useradd --create-home --shell /bin/bash nv                                  
                 # gnu-smalltalk                                                                  \
                 # ghc                                                                            \
                 # swi-prolog                                                                     \
+                # curl                                                                           \
                 # cowsay                                                                         \
                 # neofetch                                                                       \
                 sudo
