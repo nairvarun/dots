@@ -1,4 +1,4 @@
-FROM debian
+FROM debian:bullseye-slim
 
 RUN useradd --create-home --shell /bin/bash nv                                              && \
     usermod --append --groups sudo nv                                                       && \
