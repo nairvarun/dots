@@ -1,0 +1,64 @@
+[
+    {
+        "key": "alt+oem_3",
+        "command": "workbench.action.toggleMaximizedPanel"
+    },
+    {
+        "key": "alt+k s",
+        "command": "editor.action.toggleColumnSelection",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "-github.copilot.generate",
+        "when": "editorTextFocus && github.copilot.activated"
+    },
+    {
+        "key": "ctrl+k k",
+        "command": "remote-containers.reopenInContainer"
+    },
+    {
+        "key": "ctrl+k l",
+        "command": "remote-containers.reopenLocally"
+    },
+    {
+        "key": "alt+x s",
+        "command": "workbench.action.toggleStatusbarVisibility"
+    },
+    {
+        "key": "alt+x a",
+        "command": "workbench.action.toggleActivityBarVisibility"
+    },
+    {
+        "key": "alt+x t",
+        "command": "workbench.action.toggleTabsVisibility"
+    },
+    {
+        "key": "alt+b",
+        "command": "workbench.action.toggleAuxiliaryBar"
+    },
+    {
+        "key": "alt+x m",
+        "command": "editor.action.toggleMinimap"
+    },
+    {
+        "key": "alt+d",
+        "command": "editor.action.smartSelect.expand",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+a",
+        "command": "editor.action.smartSelect.shrink",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+alt+r",
+        "command": "editor.action.rename",
+        "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "alt+/",
+        "command": "actions.find",
+        "when": "editorFocus || editorIsOpen"
+    }
+]
