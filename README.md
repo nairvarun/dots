@@ -5,6 +5,10 @@
 ## branches
 - [neovim](https://gitlab.com/nairvarun/dots/-/tree/neovim)<br>
 `git clone -b neovim https://gitlab.com/nairvarun/dots.git`
+- [vim](https://gitlab.com/nairvarun/dots/-/tree/vim)<br>
+`git clone -b vim https://gitlab.com/nairvarun/dots.git`
+- [tmux](https://gitlab.com/nairvarun/dots/-/tree/tmux)<br>
+`git clone -b tmux https://gitlab.com/nairvarun/dots.git`
 - [docker](https://gitlab.com/nairvarun/dots/-/tree/docker)<br>
 `git clone -b docker https://gitlab.com/nairvarun/dots.git`
 - [vscode](https://gitlab.com/nairvarun/dots/-/tree/vscode)<br>
