@@ -15,6 +15,8 @@
 `git clone -b vscode https://gitlab.com/nairvarun/dots.git`
 - [git](https://gitlab.com/nairvarun/dots/-/tree/git)<br>
 `git clone -b git https://gitlab.com/nairvarun/dots.git`
+- [x11](https://gitlab.com/nairvarun/dots/-/tree/x11)<br>
+`git clone -b x11 https://gitlab.com/nairvarun/dots.git`
 - [windows](https://gitlab.com/nairvarun/dots/-/tree/windows)<br>
 `git clone -b windows https://gitlab.com/nairvarun/dots.git`
 - [chrome extentions](https://gitlab.com/nairvarun/dots/-/tree/chrome-ext)<br>
