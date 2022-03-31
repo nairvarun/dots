@@ -3,7 +3,8 @@ syntax on
 filetype plugin indent on
 
 "set number
-set path+=**												" for recursive file search
+" for recursive file search
+set path+=**
 set relativenumber
 set nowrap
 set tabstop=2
@@ -13,29 +14,34 @@ set incsearch
 set smartcase
 set hlsearch
 set ruler
-set undofile
+" set undofile
 set wildmenu
 
 
 " keymaps
-let mapleader = ""										" ^[ == Alt/Meta. typed by going Ctrl+v + Alt<esc>
-
+" ^[ == Alt/Meta. typed by going Ctrl+v + Alt<esc>
+let mapleader = ""										
 nnoremap v <C-v>
-inoremap <leader>i <esc>
-vnoremap <leader>i <esc>
-cnoremap <leader>i <C-u><bs>
 
 inoremap <leader>n <C-n>
 inoremap <leader>p <C-p>
 
-nnoremap <leader>s :split<CR>
-nnoremap <leader>v :vsplit<CR>
-nnoremap <leader>- <C-w>_<C-w>\|
-nnoremap <leader>= <C-w>=
 nnoremap <leader>j <C-w>j
 nnoremap <leader>k <C-w>k
 nnoremap <leader>h <C-w>h
 nnoremap <leader>l <C-w>l
+" toggle focus on splits
+let s:isFscrn = 0
+function! ToggleFscrn()
+	if s:isFscrn
+		call feedkeys("\<C-w>=")
+		let s:isFscrn = 0
+	else
+		call feedkeys("\<C-w>|\<C-w>_")
+		let s:isFscrn = 1
+	endif
+endfunction
+nnoremap <silent> <leader>; :call ToggleFscrn()<CR>
 
 nnoremap <leader>L gt
 nnoremap <leader>H gT
