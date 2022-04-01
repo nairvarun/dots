@@ -13,3 +13,5 @@
 	ss 	= switch
 	g	= log --graph
 	gg	= log --graph --all
+[init]
+	defaultBranch = main
