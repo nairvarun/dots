@@ -17,7 +17,7 @@
 `git clone -b git https://gitlab.com/nairvarun/dots.git`
 - [x11](https://gitlab.com/nairvarun/dots/-/tree/x11)<br>
 `git clone -b x11 https://gitlab.com/nairvarun/dots.git`
-- [bash](https://gitlab.com/nairvarun/dots/-/tree/x11)<br>
+- [bash](https://gitlab.com/nairvarun/dots/-/tree/bash)<br>
 `git clone -b bash https://gitlab.com/nairvarun/dots.git`
 - [windows](https://gitlab.com/nairvarun/dots/-/tree/windows)<br>
 `git clone -b windows https://gitlab.com/nairvarun/dots.git`
