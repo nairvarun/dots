@@ -6,8 +6,8 @@ vim.g.mapleader = ''	-- alt (ctrl+v alt+esc)
 vim.api.nvim_set_keymap('n', 'v', '<C-v>', {noremap=true})
 
 -- next/prev/omnicomp
-vim.api.nvim_set_keymap('i', '<leader>n', '<C-n>', {noremap=true})
-vim.api.nvim_set_keymap('i', '<leader>p', '<C-p>', {noremap=true})
+vim.api.nvim_set_keymap('i', '<leader>j', '<C-n>', {noremap=true})
+vim.api.nvim_set_keymap('i', '<leader>k', '<C-p>', {noremap=true})
 vim.api.nvim_set_keymap('i', '<leader>;', '<C-x><C-o>', {noremap=true})
 
 -- tab navigation

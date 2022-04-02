@@ -8,6 +8,7 @@ end
 return require('packer').startup({function(use)
 	use 'wbthomason/packer.nvim' -- so that packer manages itself
 	use 'folke/tokyonight.nvim'
+	use 'mattn/emmet-vim'
 	use "neovim/nvim-lspconfig"
 
   if packer_bootstrap then
