@@ -1,4 +1,220 @@
-require "usr/vanilla"
-require "usr/addons"
--- require "usr/tst"
+--> settings
+
+vim.cmd[[
+    syntax on
+    filetype plugin indent on
+]]
+
+-- :help options
+vim.opt.mouse 			= 'a'               -- enable use of mouse
+vim.opt.clipboard 		= 'unnamedplus'     -- share system clipboard
+vim.opt.tabstop 		= 4                 -- value of `\t`
+vim.opt.shiftwidth 		= 4                 -- value of 1 level of indentation (eg: `>>` in vim)
+vim.opt.expandtab 		= true              -- convert `\t` into spaces
+vim.opt.number 			= true              -- show linenumber
+vim.opt.relativenumber 	= true              -- show line number relative to current line
+vim.opt.hlsearch 		= true              -- highlight words that match during search
+vim.opt.ignorecase 		= true              -- case insensitive search
+vim.opt.smartcase 		= true              -- case sensitive search only of uppercase is used
+vim.opt.splitbelow 		= true              -- always open vertical split on the bottom half
+vim.opt.splitright 		= true              -- always open horizontal split on the right half
+vim.opt.scrolloff 		= 5                 -- start scrolling when the cursor is on the 5th last line
+vim.opt.sidescrolloff 	= 5                 -- start scrolling horizontallu when the cursor is on the 5th last character on a line
+vim.opt.visualbell 		= true              -- visual alert
+vim.opt.termguicolors 	= true              -- gui colours in the terminal is supported
+vim.opt.wrap 			= false             -- disable word wrap
+vim.opt.signcolumn 		= 'number'          -- replaces line number with lsp err symbol
+
+vim.opt.path:append('**')                   -- fuzzy file finding (`:find`)
+vim.opt.completeopt:remove('preview')       -- disable scratch buffer for lsp omnicompletion
+
+
+
+--> filetype specific settings
+
+-- list filetypes
+    -- https://vi.stackexchange.com/questions/5780/list-known-filetypes
+    -- all
+        -- :echo getcompletion('', 'filetype')
+    -- starting with letter c
+        -- :echo getcompletion('c', 'filetype')
+function _G.webdevIndents()
+    vim.opt_local.tabstop    = 2            -- value of `\t`
+    vim.opt_local.shiftwidth = 2            -- value of 1 level of indentation (eg: `>>` in vim)
+end
+
+-- use `unsilent` for echoing messages in autocmds because `:set shortmess+=F` by default in neovim
+    -- https://github.com/neovim/neovim/wiki/FAQ#calling-inputlist-echomsg--in-filetype-plugins-and-autocmd-does-not-work
+vim.cmd[[
+    augroup filetype_cmds
+        autocmd!
+        au Filetype html,css,javascript,javascriptreact,typescript,typescriptreact lua webdevIndents()
+    augroup end
+]]
+
+
+
+--> keymaps
+
+-- leader ==> alt
+-- vim.api.nvim_set_keymap('', ' ', '<Nop>', {noremap = true})
+vim.g.mapleader = ''	    -- `^[`(alt) typed by `ctrl+v alt+esc`
+
+-- block selection ==> v
+-- `v` toggles between block visual and then visual
+vim.api.nvim_set_keymap('n', 'v', '<C-v>', {noremap=true})
+
+-- next, prev, path completion, omnicomplition
+vim.api.nvim_set_keymap('i', '<leader>j', '<C-n>', {noremap=true})
+vim.api.nvim_set_keymap('i', '<leader>k', '<C-p>', {noremap=true})
+vim.api.nvim_set_keymap('i', '<leader>n', '<C-x><C-o>', {noremap=true})
+vim.api.nvim_set_keymap('i', '<leader>N', '<C-x><C-f>', {noremap=true})
+
+-- tab navigation
+vim.api.nvim_set_keymap('n', '<leader>L', 'gt', {noremap=true})
+vim.api.nvim_set_keymap('n', '<leader>H', 'gT', {noremap=true})
+
+-- split navigation
+vim.api.nvim_set_keymap('n', '<leader>h', '<C-w>h', {noremap=true})
+vim.api.nvim_set_keymap('n', '<leader>j', '<C-w>j', {noremap=true})
+vim.api.nvim_set_keymap('n', '<leader>k', '<C-w>k', {noremap=true})
+vim.api.nvim_set_keymap('n', '<leader>l', '<C-w>l', {noremap=true})
+
+-- toggle split focus
+local isFocused = false
+function _G.toggleFocus()
+    if (isFocused) then
+        vim.api.nvim_exec([[call feedkeys("\<C-w>=")]], true)
+    else
+        vim.api.nvim_exec([[call feedkeys("\<C-w>|\<C-w>_")]], true)
+    end
+    isFocused = not isFocused
+end
+vim.api.nvim_set_keymap('n', '<leader>;', ':lua toggleFocus()<CR>', {noremap=true, silent=true})
+
+
+
+--> packer
+
+-- bootstrap packer
+local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+    packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+end
+-- install plugins
+require('packer').startup({function(use)
+    use 'wbthomason/packer.nvim'        -- so that packer manages itself
+    use 'neovim/nvim-lspconfig'         -- easy nvim lsp setup
+    use 'mattn/emmet-vim'               -- emmet (html)
+    
+    -- colorschemes
+    use 'folke/tokyonight.nvim'
+    use 'sainnhe/everforest'
+    use 'andreasvc/vim-256noir'
+    use 'shaeinst/roshnivim-cs'
+    use 'catppuccin/nvim'
+
+    if packer_bootstrap then
+        require('packer').sync()
+      end
+end,
+-- so that packer uses a floating window
+config = {
+    display = {
+        open_fn = require('packer.util').float
+    },
+    profile = {
+        enable = true,
+        threshold = 0
+    }
+}})
+
+vim.cmd[[
+    augroup source_init
+        autocmd!
+        autocmd BufWritePost ~/.config/nvim/init.lua source ~/.config/nvim/init.lua
+        autocmd BufWritePost ~/.config/nvim/init.lua PackerSync
+    augroup end
+]]
+
+
+
+--> set colorscheme
+vim.cmd[[
+    colorscheme tokyonight
+]]
+
+
+
+--> lsp settings
+
+-- https://github.com/neovim/nvim-lspconfig
+
+-- -- Mappings.
+-- -- See `:help vim.diagnostic.*` for documentation on any of the below functions
+-- local opts = { noremap=true, silent=true }
+-- vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+-- vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+-- vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+-- vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+    -- Enable completion triggered by <c-x><c-o>
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- -- Mappings.
+    -- -- See `:help vim.lsp.*` for documentation on any of the below functions
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+end
+
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = { 'pyright' , 'clangd', 'tsserver', 'html' }
+for _, lsp in pairs(servers) do
+    require('lspconfig')[lsp].setup {
+        on_attach = on_attach,
+        flags = {
+            -- This will be the default in neovim 0.7+
+            debounce_text_changes = 150,
+        }
+    }
+end
+
+
+
+--> emmet settings
+
+-- remap emmet leader 
+vim.g.user_emmet_leader_key='<leader>e'
+
+-- olny work in normal mode
+-- vim.g.user_emmet_mode='n'
+
+-- only work for html, css, js-react, ts-react
+    -- to get lsit of all file types --> :echo getcompletion('', 'filetype')
+    -- https://vi.stackexchange.com/questions/5780/list-known-filetypes
+vim.g.user_emmet_install_global = 0
+vim.cmd[[
+    augroup emmet
+        autocmd!
+        autocmd FileType html,css,javascriptreact,typescriptreact EmmetInstall
+    augroup end
+]]
+
+-- refs
+-- https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
 
