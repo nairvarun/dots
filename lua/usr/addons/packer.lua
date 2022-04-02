@@ -7,9 +7,14 @@ end
 
 return require('packer').startup({function(use)
 	use 'wbthomason/packer.nvim' -- so that packer manages itself
-	use 'folke/tokyonight.nvim'
+	use 'neovim/nvim-lspconfig'
 	use 'mattn/emmet-vim'
-	use "neovim/nvim-lspconfig"
+    -- colorschemes
+	use 'folke/tokyonight.nvim'
+	use 'sainnhe/everforest'
+	use 'andreasvc/vim-256noir'
+	use 'shaeinst/roshnivim-cs'
+	use 'catppuccin/nvim'
 
   if packer_bootstrap then
     require('packer').sync()

@@ -6,9 +6,10 @@ vim.g.mapleader = ''	-- alt (ctrl+v alt+esc)
 vim.api.nvim_set_keymap('n', 'v', '<C-v>', {noremap=true})
 
 -- next/prev/omnicomp
-vim.api.nvim_set_keymap('i', '<leader>j', '<C-n>', {noremap=true})
-vim.api.nvim_set_keymap('i', '<leader>k', '<C-p>', {noremap=true})
-vim.api.nvim_set_keymap('i', '<leader>;', '<C-x><C-o>', {noremap=true})
+vim.api.nvim_set_keymap('i', '<leader>n', '<C-n>', {noremap=true})
+vim.api.nvim_set_keymap('i', '<leader>p', '<C-p>', {noremap=true})
+vim.api.nvim_set_keymap('i', '<leader>N', '<C-x><C-o>', {noremap=true})
+vim.api.nvim_set_keymap('i', '<leader>P', '<C-x><C-f>', {noremap=true})
 
 -- tab navigation
 vim.api.nvim_set_keymap('n', '<leader>L', 'gt', {noremap=true})
@@ -21,14 +22,15 @@ vim.api.nvim_set_keymap('n', '<leader>k', '<C-w>k', {noremap=true})
 vim.api.nvim_set_keymap('n', '<leader>l', '<C-w>l', {noremap=true})
 
 -- toggle split focus
-vim.api.nvim_set_keymap('n', '<leader>;', ':lua fScrn()<CR>', {noremap=true, silent=true})
-local isFScrn = false
-function _G.fScrn()
-	if (isFScrn) then
-                vim.api.nvim_exec([[call feedkeys("\<C-w>=")]], true)
-        else
-                vim.api.nvim_exec([[call feedkeys("\<C-w>|\<C-w>_")]], true)
-        end
-        isFScrn = not isFScrn
+local isFocused = false
+function _G.toggleFocus()
+    if (isFocused) then
+        vim.api.nvim_exec([[call feedkeys("\<C-w>=")]], true)
+    else
+        vim.api.nvim_exec([[call feedkeys("\<C-w>|\<C-w>_")]], true)
+    end
+    isFocused = not isFocused
 end
+
+vim.api.nvim_set_keymap('n', '<leader>;', ':lua toggleFocus()<CR>', {noremap=true, silent=true})
 
