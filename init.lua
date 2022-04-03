@@ -145,7 +145,10 @@ vim.cmd[[
 --> colorscheme
 
 vim.cmd[[
-    colorscheme tokyonight
+    colorscheme catppuccin
+    " " let g:tokyonight_style = "storm"
+    " let g:tokyonight_style = "night"
+    " colorscheme tokyonight
 ]]
 
 
