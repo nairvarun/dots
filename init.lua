@@ -90,7 +90,10 @@ function _G.toggleFocus()
     end
     isFocused = not isFocused
 end
-vim.api.nvim_set_keymap('n', '<leader>;', ':lua toggleFocus()<CR>', {noremap=true, silent=true})
+vim.api.nvim_set_keymap('n', '<leader>;', '<cmd>lua toggleFocus()<CR>', {noremap=true, silent=true})
+
+-- remove highlights
+vim.api.nvim_set_keymap('n', '<leader>?', '<cmd>noh<CR>', {noremap=true})
 
 
 
@@ -103,10 +106,10 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 -- install plugins
 require('packer').startup({function(use)
-    use 'wbthomason/packer.nvim'        -- so that packer manages itself
-    use 'neovim/nvim-lspconfig'         -- easy nvim lsp setup
-    use 'mattn/emmet-vim'               -- emmet (html)
-    
+    use 'wbthomason/packer.nvim'                    -- so that packer manages itself
+    use 'neovim/nvim-lspconfig'                     -- easy nvim lsp setup
+    use 'mattn/emmet-vim'                           -- emmet (html)
+
     -- colorschemes
     use 'folke/tokyonight.nvim'
     use 'sainnhe/everforest'
@@ -139,14 +142,15 @@ vim.cmd[[
 
 
 
---> set colorscheme
+--> colorscheme
+
 vim.cmd[[
     colorscheme tokyonight
 ]]
 
 
 
---> lsp settings
+--> lsp 
 
 -- https://github.com/neovim/nvim-lspconfig
 
@@ -196,7 +200,7 @@ end
 
 
 
---> emmet settings
+--> emmet
 
 -- remap emmet leader 
 vim.g.user_emmet_leader_key='<leader>e'
@@ -214,7 +218,4 @@ vim.cmd[[
         autocmd FileType html,css,javascriptreact,typescriptreact EmmetInstall
     augroup end
 ]]
-
--- refs
--- https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
 
