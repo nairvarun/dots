@@ -63,11 +63,11 @@ alias venv=pyvenv
 
 # fzf
 # search hidden files ignoring .git/
-export FZF_DEFAULT_COMMAND="find . -type f -not -path '*/\.git/*'"
+export FZF_DEFAULT_COMMAND="find \( -name ".venv" -o -name ".git" -o -name "node_modules" \) -prune -o -print"
 
 # ripgrep
 # search hidden files ignoring .git/
-alias rg="rg --hidden --glob '!.git'"
+alias rg="rg --hidden --glob '!.git' --glob '!.venv' --glob '!node_modules'"
 
 # fzf and ripgrep ==> nvim
 alias nff='fzf -e | xargs -r $EDITOR'
