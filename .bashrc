@@ -64,6 +64,7 @@ alias venv=pyvenv
 # fzf
 # search hidden files ignoring .git/
 export FZF_DEFAULT_COMMAND="find \( -name ".venv" -o -name ".git" -o -name "node_modules" \) -prune -o -print"
+export FZF_DEFAULT_OPTS='--bind=alt-k:up,alt-j:down'
 
 # ripgrep
 # search hidden files ignoring .git/
