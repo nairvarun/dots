@@ -1,22 +1,11 @@
 #!/bin/bash
 
-# check if git working tree is clean
-is_git_clean() {
-    # https://unix.stackexchange.com/questions/155046/determine-if-git-working-directory-is-clean-from-a-script
-    if [ -z "$(git status --porcelain)" ]; then 
-        return 0
-    else 
-        return 1
-    fi
-}
-
-if [ is_git_clean ]; then
+# check if working tree is clean
+# https://unix.stackexchange.com/questions/155046/determine-if-git-working-directory-is-clean-from-a-script
+if [ -z "$(git status --porcelain)" ]; then 
     # go to root of project 
     # https://stackoverflow.com/questions/957928/is-there-a-way-to-get-the-git-root-directory-in-one-command#comment56434319_957928
     cd $(git rev-parse --show-toplevel)
-
-    # main
-    git switch main
 
     # neovim
     git switch neovim
@@ -50,4 +39,6 @@ if [ is_git_clean ]; then
 
     # remote (origin)
     git push origin neovim tmux bash vim neofetch
-
+else
+    echo 'workingtree dirty'
+fi
