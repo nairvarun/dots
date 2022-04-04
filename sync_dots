@@ -8,34 +8,36 @@ then
     # https://stackoverflow.com/questions/957928/is-there-a-way-to-get-the-git-root-directory-in-one-command#comment56434319_957928
     cd $(git rev-parse --show-toplevel)
 
-    # pull changes
-    git pull
-
     # neovim
+    git pull
     git switch neovim
     cp ~/.config/nvim/init.lua .
     git add ./init.lua
     git commit -m 'automated neovim sync'
     
     # tmux
+    git pull
     git switch tmux
     cp ~/.tmux.conf .
     git add .tmux.conf
     git commit -m 'automated tmux sync'
 
     # bash
+    git pull
     git switch bash
     cp ~/.bashrc .
     git add .bashrc
     git commit -m 'automated bash sync'
 
     # vim
+    git pull
     git switch vim
     cp ~/.vimrc .
     git add .vimrc
     git commit -m 'automated vim sync'
 
     # neofetch
+    git pull
     git switch neofetch
     cp ~/.config/neofetch/config.conf .
     git add config.conf
