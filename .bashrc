@@ -80,7 +80,7 @@ function parse_git_dirty {
 }
 
 export PS1="\[\e[35m\]\W\[\e[m\]\[\e[32m\]\`parse_git_branch\`\[\e[m\] "
-
+# export PS1="\[\e[32m\]\`parse_git_branch\`\[\e[m\] \[\e[35m\]λ\[\e[m\] "
 
 # sys env vars
 
