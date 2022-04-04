@@ -3,8 +3,7 @@ syntax on
 filetype plugin indent on
 
 "set number
-" for recursive file search
-set path+=**
+set path+=**												" for recursive file search
 set relativenumber
 set nowrap
 set tabstop=2
@@ -19,8 +18,8 @@ set wildmenu
 
 
 " keymaps
-" ^[ == Alt/Meta. typed by going Ctrl+v + Alt<esc>
-let mapleader = ""										
+let mapleader = ""										" ^[ == Alt/Meta. typed by going Ctrl+v + Alt<esc>
+
 nnoremap v <C-v>
 
 inoremap <leader>n <C-n>
@@ -30,7 +29,6 @@ nnoremap <leader>j <C-w>j
 nnoremap <leader>k <C-w>k
 nnoremap <leader>h <C-w>h
 nnoremap <leader>l <C-w>l
-" toggle focus on splits
 let s:isFscrn = 0
 function! ToggleFscrn()
 	if s:isFscrn
