@@ -87,6 +87,8 @@ export PS1="\[\e[35m\]\W\[\e[m\]\[\e[32m\]\`parse_git_branch\`\[\e[m\] "
 # set nvim as default editor
 export EDITOR='/usr/bin/nvim'
 
+# bat theme
+export BAT_THEME="base16"
 
 # aliases
 # so that tmux uses 256 colors
