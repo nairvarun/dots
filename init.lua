@@ -1,4 +1,4 @@
---> settings
+---> settings
 
 vim.cmd[[
     syntax off
@@ -30,7 +30,7 @@ vim.opt.completeopt:remove('preview')       -- disable scratch buffer for lsp om
 
 
 
---> filetype specific settings
+---> filetype specific settings
 
 -- list filetypes
     -- https://vi.stackexchange.com/questions/5780/list-known-filetypes
@@ -49,12 +49,13 @@ vim.cmd[[
     augroup filetype_cmds
         autocmd!
         au Filetype html,css,javascript,javascriptreact,typescript,typescriptreact lua webdevIndents()
+        au Filetype conf,tmux syntax on
     augroup end
 ]]
 
 
 
---> keymaps
+---> keymaps
 
 -- leader ==> alt
 -- vim.api.nvim_set_keymap('', ' ', '<Nop>', {noremap = true})
@@ -93,11 +94,11 @@ end
 vim.api.nvim_set_keymap('n', '<leader>;', '<cmd>lua toggleFocus()<CR>', {noremap=true, silent=true})
 
 -- remove highlights
-vim.api.nvim_set_keymap('n', '<leader>?', '<cmd>noh<CR>', {noremap=true})
+vim.api.nvim_set_keymap('n', '<leader>/', '<cmd>noh<CR>', {noremap=true})
 
 
 
---> packer
+---> packer
 
 -- bootstrap packer
 local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -145,7 +146,7 @@ vim.cmd[[
 
 
 
---> colorscheme
+---> colorscheme
 
 vim.cmd[[
     colorscheme catppuccin
@@ -156,7 +157,7 @@ vim.cmd[[
 
 
 
---> lsp 
+---> lsp 
 
 -- https://github.com/neovim/nvim-lspconfig
 
@@ -174,8 +175,12 @@ local on_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    -- -- Mappings.
-    -- -- See `:help vim.lsp.*` for documentation on any of the below functions
+    -- Enable (broadcasting) snippet capability for completion
+    -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+    -- capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+    -- Mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
     -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
     -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -193,7 +198,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright' , 'clangd', 'tsserver', 'html' }
+local servers = { 'pyright' , 'clangd', 'tsserver', 'html', 'cssls' }
 for _, lsp in pairs(servers) do
     require('lspconfig')[lsp].setup {
         on_attach = on_attach,
@@ -206,11 +211,11 @@ end
 
 
 
---> treesitter
+---> treesitter
 
 require'nvim-treesitter.configs'.setup {
     -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-    ensure_installed = "maintained",
+    ensure_installed = "all",
 
     -- Install languages synchronously (only applied to `ensure_installed`)
     sync_install = false,
@@ -236,7 +241,7 @@ require'nvim-treesitter.configs'.setup {
 
 
 
---> emmet
+---> emmet
 
 -- remap emmet leader 
 vim.g.user_emmet_leader_key='<leader>e'
