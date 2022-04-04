@@ -1,7 +1,53 @@
 #!/bin/bash
 
-if [ -z "$(git status --porcelain)" ]; then 
-    echo 99
-else 
-    echo 88
-fi
+# check if git working tree is clean
+is_git_clean() {
+    # https://unix.stackexchange.com/questions/155046/determine-if-git-working-directory-is-clean-from-a-script
+    if [ -z "$(git status --porcelain)" ]; then 
+        return 0
+    else 
+        return 1
+    fi
+}
+
+if [ is_git_clean ]; then
+    # go to root of project 
+    # https://stackoverflow.com/questions/957928/is-there-a-way-to-get-the-git-root-directory-in-one-command#comment56434319_957928
+    cd $(git rev-parse --show-toplevel)
+
+    # main
+    git switch main
+
+    # neovim
+    git switch neovim
+    cp ~/.config/nvim/init.lua .
+    git add ./init.lua
+    git commit -m 'automated neovim sync'
+    
+    # tmux
+    git switch tmux
+    cp ~/.tmux.conf .
+    git add .tmux.conf
+    git commit -m 'automated tmux sync'
+
+    # bash
+    git switch bash
+    cp ~/.bashrc .
+    git add .bashrc
+    git commit -m 'automated bash sync'
+
+    # vim
+    git switch vim
+    cp ~/.vimrc .
+    git add .vimrc
+    git commit -m 'automated vim sync'
+
+    # neofetch
+    git switch neofetch
+    cp ~/.config/neofetch/config.conf .
+    git add config.conf
+    git commit -m 'automated neofetch sync'
+
+    # remote (origin)
+    git push origin neovim tmux bash vim neofetch
+
