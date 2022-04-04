@@ -1,7 +1,7 @@
 --> settings
 
 vim.cmd[[
-    syntax on
+    syntax off
     filetype plugin indent on
 ]]
 
@@ -109,13 +109,16 @@ require('packer').startup({function(use)
     use 'wbthomason/packer.nvim'                    -- so that packer manages itself
     use 'neovim/nvim-lspconfig'                     -- easy nvim lsp setup
     use 'mattn/emmet-vim'                           -- emmet (html)
+    use {
+        'nvim-treesitter/nvim-treesitter',          -- treesitter
+        run = ':TSUpdate'
+    }
 
     -- colorschemes
+    use 'catppuccin/nvim'
     use 'folke/tokyonight.nvim'
     use 'sainnhe/everforest'
     use 'andreasvc/vim-256noir'
-    use 'shaeinst/roshnivim-cs'
-    use 'catppuccin/nvim'
 
     if packer_bootstrap then
         require('packer').sync()
@@ -200,6 +203,36 @@ for _, lsp in pairs(servers) do
         }
     }
 end
+
+
+
+--> treesitter
+
+require'nvim-treesitter.configs'.setup {
+    -- One of "all", "maintained" (parsers with maintainers), or a list of languages
+    ensure_installed = "maintained",
+
+    -- Install languages synchronously (only applied to `ensure_installed`)
+    sync_install = false,
+
+    -- List of parsers to ignore installing
+    ignore_install = {},
+
+    highlight = {
+        -- `false` will disable the whole extension
+        enable = true,
+
+        -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is the name of the parser)
+        -- list of language that will be disabled
+        disable = {},
+
+        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+        -- Using this option may slow down your editor, and you may see some duplicate highlights.
+        -- Instead of true it can also be a list of languages
+        additional_vim_regex_highlighting = false,
+    },
+}
 
 
 
