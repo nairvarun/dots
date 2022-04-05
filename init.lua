@@ -32,23 +32,23 @@ vim.opt.completeopt:remove('preview')       -- disable scratch buffer for lsp om
 
 ---> filetype specific settings
 
+function _G.webdevIndents()
+    vim.opt_local.tabstop    = 2            -- value of `\t`
+    vim.opt_local.shiftwidth = 2            -- value of 1 level of indentation (eg: `>>` in vim)
+end
+
 -- list filetypes
     -- https://vi.stackexchange.com/questions/5780/list-known-filetypes
     -- all
         -- :echo getcompletion('', 'filetype')
     -- starting with letter c
         -- :echo getcompletion('c', 'filetype')
-function _G.webdevIndents()
-    vim.opt_local.tabstop    = 2            -- value of `\t`
-    vim.opt_local.shiftwidth = 2            -- value of 1 level of indentation (eg: `>>` in vim)
-end
-
 -- use `unsilent` for echoing messages in autocmds because `:set shortmess+=F` by default in neovim
     -- https://github.com/neovim/neovim/wiki/FAQ#calling-inputlist-echomsg--in-filetype-plugins-and-autocmd-does-not-work
 vim.cmd[[
     augroup filetype_cmds
         autocmd!
-        au Filetype html,css,javascript,javascriptreact,typescript,typescriptreact lua webdevIndents()
+        au Filetype html,markdown,css,javascript,javascriptreact,typescript,typescriptreact lua webdevIndents()
         au Filetype conf,tmux syntax on
     augroup end
 ]]
