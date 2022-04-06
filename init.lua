@@ -1,4 +1,4 @@
----> settings
+---> settings 
 
 vim.cmd[[
     syntax off
@@ -32,7 +32,7 @@ vim.opt.completeopt:remove('preview')       -- disable scratch buffer for lsp om
 
 ---> filetype specific settings
 
-function _G.webdevIndents()
+function webdevIndents()
     vim.opt_local.tabstop    = 2            -- value of `\t`
     vim.opt_local.shiftwidth = 2            -- value of 1 level of indentation (eg: `>>` in vim)
 end
@@ -83,7 +83,7 @@ vim.api.nvim_set_keymap('n', '<leader>l', '<C-w>l', {noremap=true})
 
 -- toggle split focus
 local isFocused = false
-function _G.toggleFocus()
+function toggleFocus()
     if (isFocused) then
         vim.api.nvim_exec([[call feedkeys("\<C-w>=")]], true)
     else
@@ -96,6 +96,8 @@ vim.api.nvim_set_keymap('n', '<leader>;', '<cmd>lua toggleFocus()<CR>', {noremap
 -- remove highlights
 vim.api.nvim_set_keymap('n', '<leader>/', '<cmd>noh<CR>', {noremap=true})
 
+-- Lexplore
+vim.api.nvim_set_keymap('n', '<leader>f', '<cmd>Lexplore 20<CR>', {noremap=true})
 
 
 ---> packer
