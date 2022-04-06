@@ -41,6 +41,12 @@ then
     git add config.conf
     git commit -m 'automated neofetch sync'
 
+    # helix
+    git switch neofetch
+    cp ~/.config/helix/config.toml .
+    git add config.toml
+    git commit -m 'automated helix sync'
+
     # main
     git switch main
 
