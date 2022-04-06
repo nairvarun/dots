@@ -106,7 +106,7 @@ pyvenv()
 {
     if [ "$VIRTUAL_ENV" == "" ] 
     then
-        if [ -d "./.venv/" ] && [ -d "./.git/" ]
+        if [ -d "./.venv/" ]
         then
             source ./.venv/bin/activate
         elif [ -d "./.git/" ]
