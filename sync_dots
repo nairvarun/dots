@@ -51,7 +51,7 @@ then
     git switch main
 
     # remote (origin)
-    git push origin neovim tmux bash vim neofetch
+    git push origin main neovim tmux bash vim neofetch helix
 else
     echo 'workingtree dirty'
 fi
