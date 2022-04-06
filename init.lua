@@ -71,6 +71,10 @@ vim.api.nvim_set_keymap('i', '<leader>k', '<C-p>', {noremap=true})
 vim.api.nvim_set_keymap('i', '<leader>n', '<C-x><C-o>', {noremap=true})
 vim.api.nvim_set_keymap('i', '<leader>N', '<C-x><C-f>', {noremap=true})
 
+-- buffer navigation
+vim.api.nvim_set_keymap('n', '<leader>b', '<cmd>bn<CR>', {noremap=true})
+vim.api.nvim_set_keymap('n', '<leader>B', '<cmd>bp<CR>', {noremap=true})
+
 -- tab navigation
 vim.api.nvim_set_keymap('n', '<leader>L', 'gt', {noremap=true})
 vim.api.nvim_set_keymap('n', '<leader>H', 'gT', {noremap=true})
