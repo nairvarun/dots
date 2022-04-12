@@ -90,7 +90,7 @@ export EDITOR='/usr/bin/nvim'
 export BAT_THEME="base16"
 
 # vi mode
-set -o vi
+# set -o vi
 # set show-mode-in-prompt on
 # set vi-ins-mode-string \1\e[5 q\2
 # set vi-cmd-mode-string \1\e[2 q\2
@@ -181,4 +181,7 @@ edit_rg()
     fi
 }
 alias erg=edit_rg
+
+# case insensitive tab completion
+bind -s 'set completion-ignore-case on'
 
