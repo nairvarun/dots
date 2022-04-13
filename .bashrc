@@ -26,12 +26,10 @@ fi
 
 unset rc
 
+### my config ###
 
+# PS1 ( https://ezprompt.net/ )
 
-# my config
-
-# PS1
-# https://ezprompt.net/
 # get current branch in git repo
 function parse_git_branch {
 	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
@@ -89,7 +87,7 @@ export EDITOR='/usr/bin/nvim'
 # bat theme
 export BAT_THEME="base16"
 
-# vi mode
+## vi mode
 # set -o vi
 # set show-mode-in-prompt on
 # set vi-ins-mode-string \1\e[5 q\2
@@ -101,7 +99,7 @@ alias ='clear'
 # so that tmux uses 256 colors
 alias tmux='TERM=xterm-256color tmux'
 
-# gvim has system clipboard support
+## gvim has system clipboard support
 # alias vim='gvim -v'
 
 # g ==> git
