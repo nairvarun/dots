@@ -47,11 +47,17 @@ then
     git add config.toml
     git commit -m 'automated helix sync'
 
+    # dnf
+    git switch dnf
+    cp /etc/dnf/dnf.conf .
+    git add dnf.conf .
+    git commit -m 'automated dnf sync'
+
     # main
     git switch main
 
     # remote (origin)
-    git push origin main neovim tmux bash vim neofetch helix
+    git push origin main neovim tmux bash vim neofetch helix dnf
 else
     echo 'workingtree dirty'
 fi
