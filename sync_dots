@@ -29,6 +29,12 @@ then
     git add .bashrc
     git commit -m 'automated bash sync'
 
+    # git
+    git switch git
+    cp ~/.gitconfig .
+    git add .gitconfig
+    git commit -m 'automated git sync'
+
     # vim
     git switch vim
     cp ~/.vimrc .
@@ -57,7 +63,7 @@ then
     git switch main
 
     # remote (origin)
-    git push origin main neovim tmux bash vim neofetch helix dnf
+    git push origin main neovim tmux bash git vim neofetch helix dnf
 else
     echo 'workingtree dirty'
 fi
