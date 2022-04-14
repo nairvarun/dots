@@ -128,6 +128,7 @@ require('packer').startup({function(use)
     use 'folke/tokyonight.nvim'
     use 'sainnhe/everforest'
     use 'andreasvc/vim-256noir'
+    use 'arcticicestudio/nord-vim'
 
     if packer_bootstrap then
         require('packer').sync()
