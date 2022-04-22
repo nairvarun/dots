@@ -20,6 +20,7 @@ vim.opt.splitbelow 		= true              -- always open vertical split on the bo
 vim.opt.splitright 		= true              -- always open horizontal split on the right half
 vim.opt.scrolloff 		= 5                 -- start scrolling when the cursor is on the 5th last line
 vim.opt.sidescrolloff 	= 5                 -- start scrolling horizontallu when the cursor is on the 5th last character on a line
+vim.opt.showmatch 		= true              -- indicate matching bracket
 vim.opt.visualbell 		= true              -- visual alert
 vim.opt.termguicolors 	= true              -- gui colours in the terminal is supported
 vim.opt.wrap 			= false             -- disable word wrap
@@ -32,9 +33,13 @@ vim.opt.completeopt:remove('preview')       -- disable scratch buffer for lsp om
 
 ---> filetype specific settings
 
-function webdevIndents()
+function webdevSettings()
     vim.opt_local.tabstop    = 2            -- value of `\t`
     vim.opt_local.shiftwidth = 2            -- value of 1 level of indentation (eg: `>>` in vim)
+end
+
+function lispSettings()
+    vim.opt_local.lisp = true               -- lisp mode
 end
 
 -- list filetypes
@@ -48,7 +53,8 @@ end
 vim.cmd[[
     augroup filetype_cmds
         autocmd!
-        au Filetype html,markdown,css,javascript,javascriptreact,typescript,typescriptreact lua webdevIndents()
+        au Filetype html,markdown,css,javascript,javascriptreact,typescript,typescriptreact,json lua webdevSettings()
+        au Filetype lisp,scheme,clojure lua lispSettings()
         au Filetype conf,tmux syntax on
     augroup end
 ]]
@@ -69,13 +75,13 @@ vim.api.nvim_set_keymap('n', 'v', '<C-v>', {noremap=true})
 vim.api.nvim_set_keymap('i', '<leader>j', '<C-n>', {noremap=true})
 vim.api.nvim_set_keymap('i', '<leader>k', '<C-p>', {noremap=true})
 vim.api.nvim_set_keymap('i', '<leader>n', '<C-x><C-o>', {noremap=true})
-vim.api.nvim_set_keymap('i', '<leader>N', '<C-x><C-f>', {noremap=true})
+vim.api.nvim_set_keymap('i', '<leader>m', '<C-x><C-f>', {noremap=true})
 
 -- buffer navigation
-vim.api.nvim_set_keymap('n', '<leader>b', '<cmd>bn<CR>', {noremap=true})
-vim.api.nvim_set_keymap('n', '<leader>B', '<cmd>bp<CR>', {noremap=true})
-vim.api.nvim_set_keymap('n', '<Tab>', ':b ', {noremap=true})
-vim.api.nvim_set_keymap('n', '<S-Tab>', ':e ', {noremap=true})
+vim.api.nvim_set_keymap('n', '<leader>J', '<cmd>bn<CR>', {noremap=true})
+vim.api.nvim_set_keymap('n', '<leader>K', '<cmd>bp<CR>', {noremap=true})
+-- vim.api.nvim_set_keymap('n', '<Tab>', ':b ', {noremap=true})
+vim.api.nvim_set_keymap('n', '<S-Tab>', ':find ', {noremap=true})
 
 -- tab navigation
 vim.api.nvim_set_keymap('n', '<leader>L', 'gt', {noremap=true})
