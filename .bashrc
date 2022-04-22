@@ -87,14 +87,13 @@ export EDITOR='/usr/bin/nvim'
 # bat theme
 export BAT_THEME="base16"
 
-## vi mode
-# set -o vi
+# vi mode
+set -o vi
 # set show-mode-in-prompt on
 # set vi-ins-mode-string \1\e[5 q\2
 # set vi-cmd-mode-string \1\e[2 q\2
 
-# emulate ctrl+l even in vi mode
-alias ='clear'
+alias l='clear'
 
 # so that tmux uses 256 colors
 alias tmux='TERM=xterm-256color tmux'
@@ -126,12 +125,15 @@ alias venv=pyvenv
 
 # fzf
 # search hidden files ignoring .git/
-export FZF_DEFAULT_COMMAND="find \( -name ".venv" -o -name ".git" -o -name "node_modules" \) -prune -o -print"
+export FZF_DEFAULT_COMMAND="find \( -name '.venv' -o -name '.git' -o -name 'node_modules' \) -prune -o -print"
 export FZF_DEFAULT_OPTS='--bind=alt-k:up,alt-j:down'
 
 # ripgrep
 # search hidden files ignoring .git/
 alias rg="rg --hidden --glob '!.git' --glob '!.venv' --glob '!node_modules'"
+
+# fzf ==> cd
+alias cdf='cd $(find \( -name ".venv" -o -name ".git" -o -name "node_modules" \) -prune -o -type d -print | fzf)'
 
 # fzf and ripgrep ==> nvim
 edit_fzf()
