@@ -89,11 +89,6 @@ export BAT_THEME="base16"
 
 # vi mode
 set -o vi
-# set show-mode-in-prompt on
-# set vi-ins-mode-string \1\e[5 q\2
-# set vi-cmd-mode-string \1\e[2 q\2
-
-alias l='clear'
 
 # so that tmux uses 256 colors
 alias tmux='TERM=xterm-256color tmux'
@@ -181,7 +176,4 @@ edit_rg()
     fi
 }
 alias erg=edit_rg
-
-# case insensitive tab completion
-bind -s 'set completion-ignore-case on'
 
