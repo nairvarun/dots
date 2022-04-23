@@ -26,7 +26,8 @@ then
     # bash
     git switch bash
     cp ~/.bashrc .
-    git add .bashrc
+    cp ~/.inputrc .
+    git add .bashrc .inputrc
     git commit -m 'automated bash sync'
 
     # git
