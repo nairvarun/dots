@@ -53,7 +53,8 @@ end
 vim.cmd[[
     augroup filetype_cmds
         autocmd!
-        au Filetype html,markdown,css,javascript,javascriptreact,typescript,typescriptreact,json lua webdevSettings()
+        au Filetype html,markdown,css,javascript,javascriptreact,typescript,typescriptreact,json,svelte lua webdevSettings()
+        au Filetype html,markdown,css,javascript,javascriptreact,typescript,typescriptreact,json,svelte EmmetInstall
         au Filetype lisp,scheme,clojure lua lispSettings()
         au Filetype conf,tmux syntax on
     augroup end
@@ -268,10 +269,5 @@ vim.g.user_emmet_leader_key='<leader>e'
     -- to get lsit of all file types --> :echo getcompletion('', 'filetype')
     -- https://vi.stackexchange.com/questions/5780/list-known-filetypes
 vim.g.user_emmet_install_global = 0
-vim.cmd[[
-    augroup emmet
-        autocmd!
-        autocmd FileType html,css,javascriptreact,typescriptreact EmmetInstall
-    augroup end
-]]
+-- autocmd that makes emmet run on specific filetypes is defined above
 
