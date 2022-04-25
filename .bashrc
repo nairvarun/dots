@@ -118,6 +118,11 @@ pyvenv()
 }
 alias venv=pyvenv
 
+# ipython
+alias ipython="ipython --no-banner --InteractiveShell.editing_mode=vi"
+# alias ipython="ipython --no-banner --InteractiveShell.editing_mode=vi --InteractiveaShellApp.extensions="['autoreload']""
+
+
 # fzf
 # search hidden files ignoring .git/
 export FZF_DEFAULT_COMMAND="find \( -name '.venv' -o -name '.git' -o -name 'node_modules' \) -prune -o -print"

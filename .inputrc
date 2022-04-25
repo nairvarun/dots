@@ -21,13 +21,13 @@ set keyseq-timeout 0
 set keymap vi-insert 
 "\f": clear-screen
 
-# vi mode even in other programs that uses GNU readline (eg: python repl)
+## vi mode even in other programs that uses GNU readline (eg: python repl)
 set editing-mode vi
 
-# coloured completions
+## coloured completions
 set colored-stats On
 
-# autocomplete immediately
-set show-all-if-ambiguous On
-set show-all-if-unmodified On
+## autocomplete immediately
+# set show-all-if-ambiguous On
+# set show-all-if-unmodified On
 
