@@ -224,6 +224,10 @@ for _, lsp in pairs(servers) do
         }
     }
 end
+require'lspconfig'.dartls.setup {
+    cmd = { "dart", "/home/nv/.local/devel/flutter-sdk-04_22/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot", "--lsp" },
+    on_attach = on_attach,
+}
 
 
 
