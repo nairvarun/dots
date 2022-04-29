@@ -6,11 +6,11 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User specific environment
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
-then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-fi
-export PATH
+# if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+# then
+#     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+# fi
+# export PATH
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
@@ -27,6 +27,9 @@ fi
 unset rc
 
 ### my config ###
+
+## path
+export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.local/devel/flutter-sdk-04_22/flutter/bin/:$PATH"
 
 # PS1 ( https://ezprompt.net/ )
 
@@ -117,6 +120,9 @@ pyvenv()
     fi
 }
 alias venv=pyvenv
+
+# requirements.txt
+alias pipr="pip install -r requirements.txt"
 
 # ipython
 alias ipython="ipython --no-banner --InteractiveShell.editing_mode=vi"
