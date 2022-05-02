@@ -1,4 +1,4 @@
----> settings 
+----------------------------- settings 
 
 vim.cmd[[
     syntax off
@@ -30,8 +30,7 @@ vim.opt.path:append('**')                   -- fuzzy file finding (`:find`)
 vim.opt.completeopt:remove('preview')       -- disable scratch buffer for lsp omnicompletion
 
 
-
----> filetype specific settings
+----------------------------- filetype specific settings
 
 function webdevSettings()
     vim.opt_local.tabstop    = 2            -- value of `\t`
@@ -53,19 +52,25 @@ end
 vim.cmd[[
     augroup filetype_cmds
         autocmd!
+
+        " webdev
         au Filetype html,markdown,css,javascript,javascriptreact,typescript,typescriptreact,json,svelte lua webdevSettings()
         au Filetype html,markdown,css,javascript,javascriptreact,typescript,typescriptreact,json,svelte EmmetInstall
+
+        " lisp
         au Filetype lisp,scheme,clojure lua lispSettings()
+
+        " non-treesitter
         au Filetype conf,tmux syntax on
+
     augroup end
 ]]
 
 
-
----> keymaps
+----------------------------- keymaps
 
 -- leader ==> alt
--- vim.api.nvim_set_keymap('', ' ', '<Nop>', {noremap = true})
+vim.api.nvim_set_keymap('', '', '<Nop>', {noremap = true})
 vim.g.mapleader = ''	    -- `^[`(alt) typed by `ctrl+v alt+esc`
 
 -- block selection ==> v
@@ -79,20 +84,20 @@ vim.api.nvim_set_keymap('i', '<leader>n', '<C-x><C-o>', {noremap=true})
 vim.api.nvim_set_keymap('i', '<leader>m', '<C-x><C-f>', {noremap=true})
 
 -- buffer navigation
-vim.api.nvim_set_keymap('n', '<leader>J', '<cmd>bn<CR>', {noremap=true})
-vim.api.nvim_set_keymap('n', '<leader>K', '<cmd>bp<CR>', {noremap=true})
+vim.api.nvim_set_keymap('n', '<leader>j', '<cmd>bn<CR>', {noremap=true})
+vim.api.nvim_set_keymap('n', '<leader>k', '<cmd>bp<CR>', {noremap=true})
 -- vim.api.nvim_set_keymap('n', '<Tab>', ':b ', {noremap=true})
-vim.api.nvim_set_keymap('n', '<S-Tab>', ':find ', {noremap=true})
+-- vim.api.nvim_set_keymap('n', '<S-Tab>', ':find ', {noremap=true})
 
 -- tab navigation
-vim.api.nvim_set_keymap('n', '<leader>L', 'gt', {noremap=true})
-vim.api.nvim_set_keymap('n', '<leader>H', 'gT', {noremap=true})
+vim.api.nvim_set_keymap('n', '<leader>l', 'gt', {noremap=true})
+vim.api.nvim_set_keymap('n', '<leader>h', 'gT', {noremap=true})
 
 -- split navigation
-vim.api.nvim_set_keymap('n', '<leader>h', '<C-w>h', {noremap=true})
-vim.api.nvim_set_keymap('n', '<leader>j', '<C-w>j', {noremap=true})
-vim.api.nvim_set_keymap('n', '<leader>k', '<C-w>k', {noremap=true})
-vim.api.nvim_set_keymap('n', '<leader>l', '<C-w>l', {noremap=true})
+-- vim.api.nvim_set_keymap('n', '<leader>h', '<C-w>h', {noremap=true})
+-- vim.api.nvim_set_keymap('n', '<leader>j', '<C-w>j', {noremap=true})
+-- vim.api.nvim_set_keymap('n', '<leader>k', '<C-w>k', {noremap=true})
+-- vim.api.nvim_set_keymap('n', '<leader>l', '<C-w>l', {noremap=true})
 
 -- toggle split focus
 local isFocused = false
@@ -113,7 +118,7 @@ vim.api.nvim_set_keymap('n', '<leader>/', '<cmd>noh<CR>', {noremap=true})
 vim.api.nvim_set_keymap('n', '<leader>f', '<cmd>Lexplore 20<CR>', {noremap=true})
 
 
----> packer
+----------------------------- packer
 
 -- bootstrap packer
 local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -132,10 +137,10 @@ require('packer').startup({function(use)
 
     -- colorschemes
     use 'catppuccin/nvim'
-    use 'folke/tokyonight.nvim'
-    use 'sainnhe/everforest'
-    use 'andreasvc/vim-256noir'
-    use 'arcticicestudio/nord-vim'
+    -- use 'folke/tokyonight.nvim'
+    -- use 'sainnhe/everforest'
+    -- use 'andreasvc/vim-256noir'
+    -- use 'arcticicestudio/nord-vim'
 
     if packer_bootstrap then
         require('packer').sync()
@@ -152,6 +157,7 @@ config = {
     }
 }})
 
+-- auto source and packer sync on saving init.lua
 vim.cmd[[
     augroup source_init
         autocmd!
@@ -162,18 +168,17 @@ vim.cmd[[
 
 
 
----> colorscheme
+----------------------------- colorscheme
 
 vim.cmd[[
     colorscheme catppuccin
-    " " let g:tokyonight_style = "storm"
+    " let g:tokyonight_style = "storm"
     " let g:tokyonight_style = "night"
     " colorscheme tokyonight
 ]]
 
 
-
----> lsp 
+----------------------------- lsp 
 
 -- https://github.com/neovim/nvim-lspconfig
 
@@ -231,7 +236,7 @@ require'lspconfig'.dartls.setup {
 
 
 
----> treesitter
+----------------------------- treesitter
 
 require'nvim-treesitter.configs'.setup {
     -- One of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -261,7 +266,7 @@ require'nvim-treesitter.configs'.setup {
 
 
 
----> emmet
+----------------------------- emmet
 
 -- remap emmet leader 
 vim.g.user_emmet_leader_key='<leader>e'
