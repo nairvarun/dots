@@ -52,17 +52,13 @@ end
 vim.cmd[[
     augroup filetype_cmds
         autocmd!
-
         " webdev
         au Filetype html,markdown,css,javascript,javascriptreact,typescript,typescriptreact,json,svelte lua webdevSettings()
         au Filetype html,markdown,css,javascript,javascriptreact,typescript,typescriptreact,json,svelte EmmetInstall
-
         " lisp
         au Filetype lisp,scheme,clojure lua lispSettings()
-
         " non-treesitter
         au Filetype conf,tmux syntax on
-
     augroup end
 ]]
 
@@ -70,12 +66,25 @@ vim.cmd[[
 ----------------------------- keymaps
 
 -- leader ==> alt
-vim.api.nvim_set_keymap('', '', '<Nop>', {noremap = true})
+-- if  is set to <Nop> Alt+{x} wont sent the escape signal in any terminal
+-- vim.api.nvim_set_keymap('', '', '<Nop>', {noremap = true})
 vim.g.mapleader = ''	    -- `^[`(alt) typed by `ctrl+v alt+esc`
+
+-- -- esc
+-- vim.api.nvim_set_keymap('!', '<leader>i', '<esc>', {noremap=true})
 
 -- block selection ==> v
 -- `v` toggles between block visual and then visual
 vim.api.nvim_set_keymap('n', 'v', '<C-v>', {noremap=true})
+
+-- $
+vim.api.nvim_set_keymap('n', '<leader>e', '$', {noremap=true})
+vim.api.nvim_set_keymap('x', '<leader>e', '$', {noremap=true})
+vim.api.nvim_set_keymap('o', '<leader>e', '$', {noremap=true})
+
+-- %
+vim.api.nvim_set_keymap('n', '<leader>p', '%', {noremap=true})
+vim.api.nvim_set_keymap('x', '<leader>p', '%', {noremap=true})
 
 -- next, prev, path completion, omnicomplition
 vim.api.nvim_set_keymap('i', '<leader>j', '<C-n>', {noremap=true})
@@ -134,12 +143,13 @@ require('packer').startup({function(use)
         'nvim-treesitter/nvim-treesitter',          -- treesitter
         run = ':TSUpdate'
     }
+    use 'jpalardy/vim-slime'                        -- slime like in emacs
 
     -- colorschemes
     use 'catppuccin/nvim'
     -- use 'folke/tokyonight.nvim'
     -- use 'sainnhe/everforest'
-    -- use 'andreasvc/vim-256noir'
+    use 'andreasvc/vim-256noir'
     -- use 'arcticicestudio/nord-vim'
 
     if packer_bootstrap then
@@ -219,6 +229,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
+-- 'eslint' is not included for now because it is duplicating tsserver features
 local servers = { 'pyright' , 'clangd', 'tsserver', 'html', 'cssls' }
 for _, lsp in pairs(servers) do
     require('lspconfig')[lsp].setup {
@@ -265,7 +276,6 @@ require'nvim-treesitter.configs'.setup {
 }
 
 
-
 ----------------------------- emmet
 
 -- remap emmet leader 
@@ -279,4 +289,16 @@ vim.g.user_emmet_leader_key='<leader>e'
     -- https://vi.stackexchange.com/questions/5780/list-known-filetypes
 vim.g.user_emmet_install_global = 0
 -- autocmd that makes emmet run on specific filetypes is defined above
+
+
+----------------------------- vim-slime
+
+-- config
+vim.g.slime_target='tmux'
+vim.g.slime_default_config={socket_name = "default", target_pane = "{last}"}
+
+-- keymaps
+vim.api.nvim_set_keymap('n', '<leader>s', 'V<Plug>SlimeRegionSend', {noremap=true})
+vim.api.nvim_set_keymap('x', '<leader>s', 'V<Plug>SlimeRegionSend', {noremap=true})
+vim.api.nvim_set_keymap('x', '<leader>S', '<Plug>SlimeRegionSend', {noremap=true})
 
