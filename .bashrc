@@ -85,7 +85,7 @@ export PS1="\[\e[35m\]\W\[\e[m\]\[\e[32m\]\`parse_git_branch\`\[\e[m\] "
 
 # sys env vars
 # set nvim as default editor
-export EDITOR='/usr/bin/nvim'
+export EDITOR='/usr/local/bin/nvim'
 
 # bat theme
 export BAT_THEME="base16"
@@ -101,6 +101,13 @@ alias tmux='TERM=xterm-256color tmux'
 
 # g ==> git
 alias g='git'
+
+# t ==> tmux
+alias t='tmux'
+
+# to make lisp repls bearable
+alias sbcl='rlwrap sbcl'
+alias csi='rlwrap csi'
 
 # python venv 
 # venv ==> activate/deactivate .venv and make .venv if it does't exist
@@ -188,3 +195,4 @@ edit_rg()
 }
 alias erg=edit_rg
 
+. "$HOME/.cargo/env"
