@@ -140,6 +140,7 @@ alias ipython="ipython --no-banner --InteractiveShell.editing_mode=vi"
 # colors + search hidden files ignoring .git/
 export FZF_DEFAULT_COMMAND="find \( -name '.venv' -o -name '.git' -o -name 'node_modules' \) -prune -o -print"
 export FZF_DEFAULT_OPTS='--bind=alt-k:up,alt-j:down --color=bg+:#302D41,bg:#1E1E2E,spinner:#F8BD96,hl:#F28FAD --color=fg:#D9E0EE,header:#F28FAD,info:#DDB6F2,pointer:#F8BD96 --color=marker:#F8BD96,fg+:#F2CDCD,prompt:#DDB6F2,hl+:#F28FAD'
+# export FZF_DEFAULT_OPTS='--bind=alt-k:up,alt-j:down --preview "bat {} --style numbers,changes --color=always" --color=bg+:#302D41,bg:#1E1E2E,spinner:#F8BD96,hl:#F28FAD --color=fg:#D9E0EE,header:#F28FAD,info:#DDB6F2,pointer:#F8BD96 --color=marker:#F8BD96,fg+:#F2CDCD,prompt:#DDB6F2,hl+:#F28FAD'
 
 # ripgrep
 # search hidden files ignoring .git/
@@ -195,4 +196,3 @@ edit_rg()
 }
 alias erg=edit_rg
 
-. "$HOME/.cargo/env"
