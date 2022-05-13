@@ -230,7 +230,7 @@ end
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 -- 'eslint' is not included for now because it is duplicating tsserver features
-local servers = { 'pyright' , 'clangd', 'tsserver', 'html', 'cssls' }
+local servers = { 'pyright' , 'clangd', 'tsserver', 'html', 'cssls', 'julials' }
 for _, lsp in pairs(servers) do
     require('lspconfig')[lsp].setup {
         on_attach = on_attach,
