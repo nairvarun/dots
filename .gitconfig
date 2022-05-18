@@ -15,3 +15,4 @@
 	gg	= log --graph --all
 [init]
 	defaultBranch = main
+
