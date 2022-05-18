@@ -13,8 +13,9 @@ then
 
     # neovim
     git switch neovim
-    cp ~/.config/nvim/init.lua .
-    git add ./init.lua
+    rm -rf ./init.lua ./lua/ ./ftplugin/
+    cp -r ~/.config/nvim/init.lua ~/.config/nvim/lua/ ~/.config/nvim/ftplugin/ .
+    git add .
     git commit -m 'automated neovim sync'
     
     # tmux
