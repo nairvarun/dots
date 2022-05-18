@@ -1,0 +1,6 @@
+require("nv/addons/packer")
+require("nv/addons/colorscheme")
+require("nv/addons/lspconfig")
+require("nv/addons/treesitter")
+require("nv/addons/emmet")
+require("nv/addons/slime")
