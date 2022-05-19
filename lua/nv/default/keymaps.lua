@@ -46,16 +46,16 @@ vim.api.nvim_set_keymap('n', '<leader>k', '<cmd>bp<CR>', {noremap=true})
 -- vim.api.nvim_set_keymap('n', '<leader>l', '<C-w>l', {noremap=true})
 
 ------ toggle split focus
-local isFocused = false
-function toggleFocus()
-    if (isFocused) then
-        vim.api.nvim_exec([[call feedkeys("\<C-w>=")]], true)
-    else
-        vim.api.nvim_exec([[call feedkeys("\<C-w>|\<C-w>_")]], true)
-    end
-    isFocused = not isFocused
-end
-vim.api.nvim_set_keymap('n', '<leader>;', '<cmd>lua toggleFocus()<CR>', {noremap=true, silent=true})
+-- local isFocused = false
+-- function toggleFocus()
+--     if (isFocused) then
+--         vim.api.nvim_exec([[call feedkeys("\<C-w>=")]], true)
+--     else
+--         vim.api.nvim_exec([[call feedkeys("\<C-w>|\<C-w>_")]], true)
+--     end
+--     isFocused = not isFocused
+-- end
+-- vim.api.nvim_set_keymap('n', '<leader>;', '<cmd>lua toggleFocus()<CR>', {noremap=true, silent=true})
 
 ------ remove highlights
 vim.api.nvim_set_keymap('n', '<leader>/', '<cmd>noh<CR>', {noremap=true})
