@@ -1,5 +1,7 @@
 # .bashrc
 
+### default feddora config ###
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
@@ -29,7 +31,7 @@ unset rc
 ### my config ###
 
 ## path
-export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.local/devel/flutter-sdk-04_22/flutter/bin/:$PATH"
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
 # PS1 ( https://ezprompt.net/ )
 
@@ -195,6 +197,15 @@ edit_rg()
     fi
 }
 alias erg=edit_rg
+
+add_license()
+{
+	LICENSE=`svn ls https://github.com/spdx/license-list-data/trunk/text/ | fzf`
+	svn export --force https://github.com/spdx/license-list-data/trunk/text/${LICENSE} ./LICENSE
+	echo "pls make sure to add personal details in the LICENSE"
+}
+alias spdx=add_license
+
 
 
 [ -f "/home/nv/.ghcup/env" ] && source "/home/nv/.ghcup/env" # ghcup-env
