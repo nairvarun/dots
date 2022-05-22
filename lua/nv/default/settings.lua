@@ -36,7 +36,7 @@ vim.opt.wrap			= false				-- disable word wrap
 vim.opt.completeopt:remove('preview')		-- disable scratch buffer for lsp omnicompletion
 
 ----> whitespace
-vim.opt.list			= true				-- show whitespace
+vim.opt.list			= false				-- show whitespace
 vim.opt.listchars:append({					-- :h listchars
 	eol = "↵",
 	tab = "⋅⋅|",

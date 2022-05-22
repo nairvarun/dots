@@ -70,6 +70,7 @@ require('packer').startup({function(use)
 	-- use 'sainnhe/everforest'						-- [colorscheme] everforest
 	-- use 'andreasvc/vim-256noir'					-- [colorscheme] 256noir
 	-- use 'arcticicestudio/nord-vim'				-- [colorscheme] nord
+	use 'plan9-for-vimspace/acme-colors'			-- [colorscheme] acme
 
 	if packer_bootstrap then
 		require('packer').sync()
