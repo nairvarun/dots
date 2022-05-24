@@ -11,12 +11,11 @@ end
 
 cmp.setup({
 	snippet = {
-		-- REQUIRED - you must specify a snippet engine
 		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-			-- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-			-- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-			-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+			vim.fn["vsnip#anonymous"](args.body)
+			-- require('luasnip').lsp_expand(args.body)
+			-- require('snippy').expand_snippet(args.body)
+			-- vim.fn["UltiSnips#Anon"](args.body)
 		end,
 	},
 	window = {
@@ -24,13 +23,12 @@ cmp.setup({
 		documentation = cmp.config.window.bordered(),
 	},
 	mapping = cmp.mapping.preset.insert({
-		['<C-p>'] = cmp.mapping.scroll_docs(-4),
-		['<C-n>'] = cmp.mapping.scroll_docs(4),
-		['<C-Space>'] = cmp.mapping.complete(),
-		['<C-e>'] = cmp.mapping.abort(),
-		['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-
-		["<Tab>"] = cmp.mapping(function(fallback)
+		['<leader>K']	= cmp.mapping.scroll_docs(-4),
+		['<leader>J']	= cmp.mapping.scroll_docs(4),
+		['<C-Space>']	= cmp.mapping.complete(),
+		['<leader>h']	= cmp.mapping.abort(),
+		-- ['<leader>h']	= cmp.mapping.confirm({ select = true }),		-- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+		["<leader>j"]	= cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
 			elseif vim.fn["vsnip#available"](1) == 1 then
@@ -38,38 +36,27 @@ cmp.setup({
 			elseif has_words_before() then
 				cmp.complete()
 			else
-				fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+				fallback() -- The fallback function sends a already mapped key
 			end
-		end, { "i", "s" }),
-
-		["<S-Tab>"] = cmp.mapping(function()
+		end, { "i", "s", "c" }),
+		["<leader>k"] = cmp.mapping(function()
 			if cmp.visible() then
 				cmp.select_prev_item()
 			elseif vim.fn["vsnip#jumpable"](-1) == 1 then
 				feedkey("<Plug>(vsnip-jump-prev)", "")
 			end
-		end, { "i", "s" }),
+		end, { "i", "s", "c" }),
 	}),
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
 		{ name = 'nvim_lua' },
-		{ name = 'vsnip' }, -- For vsnip users.
-		-- { name = 'luasnip' }, -- For luasnip users.
-		-- { name = 'ultisnips' }, -- For ultisnips users.
-		-- { name = 'snippy' }, -- For snippy users.
-	}, {
 		{ name = 'buffer' },
-	})
+		{ name = 'vsnip' },
+	}),
+	experimental = {
+		ghost_text = false,
+	},
 })
-
--- Set configuration for specific filetype.
--- cmp.setup.filetype('gitcommit', {
--- 	sources = cmp.config.sources({
--- 		{ name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
--- 	}, {
--- 		{ name = 'buffer' },
--- 	})
--- })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
@@ -86,6 +73,6 @@ cmp.setup.cmdline(':', {
 		{ name = 'path' }
 	}, {
 		{ name = 'cmdline' }
-	})
+	}),
 })
 

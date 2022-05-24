@@ -20,26 +20,26 @@ require('packer').startup({function(use)
 	-- use 'williamboman/nvim-lsp-installer'		-- to install lsp servers easily
 
 	----> completion
-	-- use 'hrsh7th/nvim-cmp'
-	-- use 'hrsh7th/cmp-nvim-lsp'
-	-- use 'hrsh7th/cmp-buffer'
-	-- use 'hrsh7th/cmp-path'
-	-- use 'hrsh7th/cmp-cmdline'
-	-- use 'hrsh7th/cmp-nvim-lua'
+	use 'hrsh7th/nvim-cmp'
+	use 'hrsh7th/cmp-nvim-lsp'
+	use 'hrsh7th/cmp-buffer'
+	use 'hrsh7th/cmp-path'
+	use 'hrsh7th/cmp-cmdline'
+	use 'hrsh7th/cmp-nvim-lua'
 
 	----> snippets 
-	-- use 'hrsh7th/cmp-vsnip'
-	-- use 'hrsh7th/vim-vsnip'
+	use 'hrsh7th/cmp-vsnip'
+	use 'hrsh7th/vim-vsnip'
 	-- use 'rafamadriz/friendly-snippets'
 
 	----> comments
 	-- use 'numToStr/Comment.nvim'
 
 	----> telescope
-	-- use {
-	--   'nvim-telescope/telescope.nvim',
-	--   requires = { {'nvim-lua/plenary.nvim'} }
-	-- }
+	use {
+	  'nvim-telescope/telescope.nvim',
+	  requires = { {'nvim-lua/plenary.nvim'} }
+	}
 
 	----> git
 	use 'lewis6991/gitsigns.nvim'

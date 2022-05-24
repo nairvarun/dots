@@ -47,6 +47,6 @@ vim.opt.listchars:append({					-- :h listchars
 	extends = ">",
 	conceal = "☢",
 	precedes = "<",
-	nbsp = "¶",
+	nbsp = "&",
 })
 

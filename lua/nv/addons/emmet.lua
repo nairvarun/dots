@@ -1,6 +1,3 @@
----- alt ==> leader
-vim.g.mapleader = ''		-- `^[`(alt) typed by `ctrl+v alt+esc`
-
 ---- remap emmet leader 
 vim.g.user_emmet_leader_key='<leader>e'
 

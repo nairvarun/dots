@@ -1,6 +1,3 @@
----- alt ==> leader
-vim.g.mapleader = ''	    -- `^[`(alt) typed by `ctrl+v alt+esc`
-
 -- config
 vim.g.slime_target='tmux'
 vim.g.slime_default_config={socket_name = "default", target_pane = "{last}"}
