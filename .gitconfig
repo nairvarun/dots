@@ -11,6 +11,7 @@
 	b	= branch
 	bb	= branch -a
 	ss 	= switch
+	l	= log --oneline
 	g	= log --graph
 	gg	= log --graph --all
 [init]
