@@ -56,6 +56,12 @@ then
     git add config.toml
     git commit -m 'automated helix sync'
 
+    # btop
+    git switch btop
+    cp -r ~/.config/btop/* .
+    git add .
+    git commit -m 'automated helix sync'
+
     # dnf
     git switch dnf
     cp /etc/dnf/dnf.conf .
