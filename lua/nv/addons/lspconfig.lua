@@ -10,6 +10,7 @@ vim.api.nvim_set_keymap('n', '<space>d', ':lua vim.diagnostic.', {noremap=true})
 vim.diagnostic.config({
 	virtual_text = true,
 	underline = true,
+    severity_sort = true,
 	float = {
 		focusable = true,
 		style = "minimal",
@@ -43,7 +44,7 @@ local on_attach = function(client, bufnr)
 	-- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 	-- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 	-- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-	
+
 	-- if client.server_capabilities.document_highlight then
 	-- 	vim.api.nvim_exec(
 	-- 		[[
@@ -65,7 +66,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright' , 'clangd', 'html', 'cssls', 'tsserver', 'julials' }
+local servers = { 'pyright' , 'clangd', 'html', 'cssls', 'tsserver', 'julials', 'sumneko_lua' }
 for _, lsp in pairs(servers) do
 	require('lspconfig')[lsp].setup {
 		on_attach = on_attach,

@@ -27,7 +27,7 @@ cmp.setup({
 		['<leader>J']	= cmp.mapping.scroll_docs(4),
 		['<C-Space>']	= cmp.mapping.complete(),
 		['<leader>h']	= cmp.mapping.abort(),
-		-- ['<leader>h']	= cmp.mapping.confirm({ select = true }),		-- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+		['<leader>L']	= cmp.mapping.confirm({ select = true }),		-- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 		["<leader>j"]	= cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()

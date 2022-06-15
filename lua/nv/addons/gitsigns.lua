@@ -6,3 +6,6 @@ require('gitsigns').setup {
 		virt_text_pos = 'right_align',	-- 'eol' | 'overlay' | 'right_align'
 	},
 }
+
+vim.api.nvim_set_keymap('n', '<space>g', ':Gitsigns ', {noremap=true})
+

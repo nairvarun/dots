@@ -77,7 +77,7 @@ function toggleQfl()
     end
     qflOpen = not qflOpen
 end
-vim.api.nvim_set_keymap('n', '<C-h>', '<cmd>lua toggleQfl()<CR>', {noremap=true, silent=true})
+vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lua toggleQfl()<CR>', {noremap=true, silent=true})
 
 
 ------ :noh ==> <leader>/

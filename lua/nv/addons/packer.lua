@@ -27,10 +27,10 @@ require('packer').startup({function(use)
 	use 'hrsh7th/cmp-cmdline'
 	use 'hrsh7th/cmp-nvim-lua'
 
-	----> snippets 
+	----> snippets
 	use 'hrsh7th/cmp-vsnip'
 	use 'hrsh7th/vim-vsnip'
-	-- use 'rafamadriz/friendly-snippets'
+	use 'rafamadriz/friendly-snippets'
 
 	----> comments
 	-- use 'numToStr/Comment.nvim'
@@ -91,11 +91,11 @@ config = {
 ---- auto source and packer sync on saving init.lua
 vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = {"packer.lua"},
-	callback = 
+	callback =
 		function()
 			if not pcall(function () vim.cmd("source <afile>") vim.cmd("PackerSync") end) then
 				print('could not run :PackerSync')
-			end 
+			end
 		end,
 	group = vim.api.nvim_create_augroup("packer", { clear = true }),
 })
