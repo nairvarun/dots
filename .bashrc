@@ -28,10 +28,14 @@ fi
 
 unset rc
 
+[ -f "/home/nv/.ghcup/env" ] && source "/home/nv/.ghcup/env" # ghcup-env
+
+alias luamake=/home/nv/.local/devel/lua-language-server/3rd/luamake/luamake
+
 ### my config ###
 
 ## path
-export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.local/devel/lua-language-server/bin:$PATH"
 
 # PS1 ( https://ezprompt.net/ )
 
@@ -210,6 +214,9 @@ add_license()
 }
 alias spdx=add_license
 
+alias srcbrc="source ~/.bashrc"
 
 
-[ -f "/home/nv/.ghcup/env" ] && source "/home/nv/.ghcup/env" # ghcup-env
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
