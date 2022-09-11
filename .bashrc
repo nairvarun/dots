@@ -91,7 +91,7 @@ export PS1="\[\e[35m\]\W\[\e[m\]\[\e[32m\]\`parse_git_branch\`\[\e[m\] "
 
 # sys env vars
 # set nvim as default editor
-export EDITOR='/usr/local/bin/nvim'
+export EDITOR='/usr/bin/vi'
 
 # bat theme
 export BAT_THEME="base16"
