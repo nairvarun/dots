@@ -1,4 +1,4 @@
 # dots
 
-<img src="./media/chika.gif" alt="[gif]" width="25%"/>
+<img src="./chika.gif" alt="[gif]" width="25%"/>
 
