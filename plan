@@ -1,0 +1,3 @@
+git clone worktree/bare
+symlink git files to where it is needed
+sh script to do symlinking
