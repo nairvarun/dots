@@ -1,0 +1,20 @@
+# Hydrogen
+
+padding         = 0
+separator       = "⇨"
+key_color       = "Lightblue"
+separator_color = "Lightred"
+
+[bar]
+visible         = true
+
+[box]
+border          = "rounded"
+visible         = true
+
+[keys]
+machine         = "Machine"
+distro          = "Distro"
+de              = "DE"
+shell           = "Shell"
+uptime          = "Uptime"
