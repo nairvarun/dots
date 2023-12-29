@@ -1,0 +1,18 @@
+[user]
+	email = 74466129+nairvarun@users.noreply.github.com
+	#email = 10447555-nairvarun@users.noreply.gitlab.com
+	name = varun
+[alias]
+	s 	= status
+	a 	= add
+	aa 	= add .
+	c 	= commit -m 
+	cc 	= commit -m '.'
+	b	= branch
+	bb	= branch -a
+	ss 	= switch
+	l	= log --oneline
+	g	= log --graph
+	gg	= log --graph --all
+[init]
+	defaultBranch = main
