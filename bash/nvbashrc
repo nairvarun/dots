@@ -96,10 +96,14 @@ alias ipython="ipython --no-banner --InteractiveShell.editing_mode=vi"
 # }
 # alias erg=edit_rg
 
+# btop
+alias btop="btop --utf-force"
+
 # misc aliases
 alias srcbrc="source ~/.bashrc"
 alias xx="xdg-open $1 &>/dev/null"
 alias q="vi /home/nv/.q"
+alias up="sudo apt update && sudo apt upgrade"
 
 alias la="ls -a"
 alias ll="ls -al"
