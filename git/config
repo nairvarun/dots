@@ -3,7 +3,7 @@
 	#email = 10447555-nairvarun@users.noreply.gitlab.com
 	name = varun
 [alias]
-	s 	= status
+	s 	= status -sb
 	a 	= add
 	aa 	= add .
 	c 	= commit -m 
