@@ -2,61 +2,109 @@
 set -o vi
 
 # PS1 ( https://ezprompt.net/ )
-
 # get current branch in git repo
-function _parse_git_branch {
-        BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-        if [ ! "${BRANCH}" == "" ]
-        then
-                STAT=`_parse_git_dirty`
+
+function _current_cluster {
+        CLUSTER=`kubectl config current-context 2> /dev/null`
+        if [ ! "${CLUSTER}" == "" ]; then
+                echo "[${CLUSTER}]"
+        else
+                echo ""
+        fi
+}
+
+function _is_git_dirty {
+        BRANCH=`git branch --show-current 2> /dev/null`
+        if [ ! "${BRANCH}" == "" ]; then
+                if [ -z "$(git status --porcelain)" ]; then
+                        STAT=""
+                else
+                        STAT="*"
+                fi
                 echo "[${BRANCH}${STAT}]"
         else
                 echo ""
         fi
 }
 
-# get current status of git repo
-function _parse_git_dirty {
-        status=`git status 2>&1 | tee`
-        dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
-        untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
-        ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
-        newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
-        renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
-        deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
-        bits=''
-        if [ "${renamed}" == "0" ]; then
-                bits=">${bits}"
-        fi
-        if [ "${ahead}" == "0" ]; then
-                bits="*${bits}"
-        fi
-        if [ "${newfile}" == "0" ]; then
-                bits="+${bits}"
-        fi
-        if [ "${untracked}" == "0" ]; then
-                bits="?${bits}"
-        fi
-        if [ "${deleted}" == "0" ]; then
-                bits="x${bits}"
-        fi
-        if [ "${dirty}" == "0" ]; then
-                bits="!${bits}"
-        fi
-        if [ ! "${bits}" == "" ]; then
-                echo " ${bits}"
-        else
-                echo ""
-        fi
-}
+# function _parse_git_status {
+#         git status --short |
+#         awk '{ print $1 }' |
+#         sort | uniq |
+#         awk '{print}' ORS='' |
+#         awk '{
+#                 gsub(/\?+/,"?");
+#                 gsub(/\M+/,"!");
+#                 gsub(/\T+/,"t");
+#                 gsub(/\A+/,"+");
+#                 gsub(/\D+/,"x");
+#                 gsub(/\R+/,"r");
+#                 gsub(/\C+/,"c");
+#                 gsub(/\U+/,"u");
+#                 print tolower($0);
+#         }'
+# }
 
-export PS1="\[\e[35m\]\W\[\e[m\]\[\e[32m\]\`_parse_git_branch\`\[\e[m\] "
+# # get current status of git repo
+# function _parse_git_dirty {
+#         status=`git status 2>&1 | tee`
+#         dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
+#         untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
+#         ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
+#         newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
+#         renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
+#         deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
+#         bits=''
+#         if [ "${renamed}" == "0" ]; then
+#                 bits=">${bits}"
+#         fi
+#         if [ "${ahead}" == "0" ]; then
+#                 bits="*${bits}"
+#         fi
+#         if [ "${newfile}" == "0" ]; then
+#                 bits="+${bits}"
+#         fi
+#         if [ "${untracked}" == "0" ]; then
+#                 bits="?${bits}"
+#         fi
+#         if [ "${deleted}" == "0" ]; then
+#                 bits="x${bits}"
+#         fi
+#         if [ "${dirty}" == "0" ]; then
+#                 bits="!${bits}"
+#         fi
+#         if [ ! "${bits}" == "" ]; then
+#                 echo " ${bits}"
+#         else
+#                 echo ""
+#         fi
+# }
+
+# git status --short |
+# awk '{ print $1 }' |
+# sort |
+# uniq |
+# awk '{print}' ORS='' |
+# awk '{
+#         gsub(/\?+/,"?");
+#         gsub(/\M+/,"!");
+#         gsub(/\T+/,"t");
+#         gsub(/\A+/,"+");
+#         gsub(/\D+/,"x");
+#         gsub(/\R+/,"r");
+#         gsub(/\C+/,"c");
+#         gsub(/\U+/,"u");
+#         print tolower($0);
+# }'
+
+export PS1="\[\e[35m\](\W)\[\e[m\]\[\e[32m\]\`_is_git_dirty\`\[\e[m\]\[\e[34m\]\`_current_cluster\`\[\e[m\] "
 
 # so that tmux uses 256 colors
-alias tmux='TERM=xterm-256color tmux'
+alias t='TERM=xterm-256color tmux -u'
 alias g='git'
 alias k='kubectl'
 complete -o default -F __start_kubectl k
+source ~/.kind-completion
 
 # python
 # venv ==> activate/deactivate .venv and make .venv if it does't exist
@@ -156,7 +204,7 @@ alias btop="btop --utf-force"
 export EDITOR="/bin/vi"
 
 # misc aliases
-alias srcbrc="source ~/.bashrc"
+alias sbc="source ~/.bashrc"
 alias xx="xdg-open $1 &>/dev/null"
 alias q="vi /home/nv/.q"
 alias up="sudo apt update && sudo apt upgrade"
