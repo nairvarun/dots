@@ -4,6 +4,7 @@ filetype plugin indent on
 
 "set number
 set path+=**												" for recursive file search
+set number
 set relativenumber
 set nowrap
 set tabstop=2
