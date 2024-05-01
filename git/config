@@ -3,6 +3,7 @@
 	#email = 10447555-nairvarun@users.noreply.gitlab.com
 	name = varun
 [alias]
+	cl	= clone
 	s 	= status -sb
 	a 	= add
 	aa 	= add .

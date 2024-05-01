@@ -127,12 +127,13 @@ export PS1="$RED\`_pyvenv\`$ENDC$MAGENTA(\`_tmux\`\W)$ENDC$GREEN\`_git\`$ENDC$BL
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # so that tmux uses 256 colors
+alias tst='cd /home/nv/dev/.tst/'
 alias t='TERM=xterm-256color tmux -u'
 alias g='git'
 alias k='kubectl'
 complete -o default -F __start_kubectl k
-source ~/.kind-completion
-alias bat="batcat --style=plain"
+# source ~/.kind-completion
+# alias bat="batcat --style=plain"
 alias p="python3 -q"
 
 # python
@@ -154,6 +155,16 @@ venv() {
 
 # requirements.txt
 alias pipr="pip install -r requirements.txt"
+alias pi="pip install"
+
+pa() {
+    if [ -d "/home/nv/py/virtual-env/all" ]
+    then
+        source /home/nv/py/virtual-env/all/bin/activate
+    else
+        echo "where is paul?"
+    fi
+}
 
 # ipython
 alias ipython="ipython --no-banner --InteractiveShell.editing_mode=vi"
@@ -236,7 +247,12 @@ export EDITOR="/bin/vi"
 alias sbc="source ~/.bashrc"
 alias xx="xdg-open $1 &>/dev/null"
 alias q="vi /home/nv/.q"
-alias up="sudo apt update && sudo apt upgrade"
+# alias up="sudo apt update && sudo apt upgrade"
+alias up="sudo dnf update"
 
 alias la="ls -a"
 alias ll="ls -al"
+
+alias astronvim="NVIM_APPNAME=nvim/AstroNvim nvim"
+alias lazyvim="NVIM_APPNAME=nvim/LazyVim nvim"
+alias nvchad="NVIM_APPNAME=nvim/NvChad nvim"
