@@ -127,12 +127,13 @@ export PS1="$RED\`_pyvenv\`$ENDC$MAGENTA(\`_tmux\`\W)$ENDC$GREEN\`_git\`$ENDC$BL
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # so that tmux uses 256 colors
-alias tst='cd /home/nv/dev/.tst/'
+alias tst='cd /home/nv/.tst/'
+alias dev='cd /home/nv/dev/'
 alias t='TERM=xterm-256color tmux -u'
 alias g='git'
 alias k='kubectl'
 complete -o default -F __start_kubectl k
-# source ~/.kind-completion
+source ~/.kind-completion
 # alias bat="batcat --style=plain"
 alias p="python3 -q"
 
@@ -246,7 +247,9 @@ export EDITOR="/bin/vi"
 # misc aliases
 alias sbc="source ~/.bashrc"
 alias xx="xdg-open $1 &>/dev/null"
-alias q="vi /home/nv/.q"
+alias q="vi /home/nv/.nv/.q"
+alias gul="cat /home/nv/.nv/gul.sixel"
+alias d="docker"
 # alias up="sudo apt update && sudo apt upgrade"
 alias up="sudo dnf update"
 
@@ -256,3 +259,12 @@ alias ll="ls -al"
 alias astronvim="NVIM_APPNAME=nvim/AstroNvim nvim"
 alias lazyvim="NVIM_APPNAME=nvim/LazyVim nvim"
 alias nvchad="NVIM_APPNAME=nvim/NvChad nvim"
+
+export PATH=$PATH:/usr/local/go/bin:/home/nv/go/bin
+source <(kubectl completion bash)
+alias k=kubectl
+complete -o default -F __start_kubectl k
+timedatectl set-local-rtc 1 --adjust-system-clock
+
+alias whatismyip="curl https://checkip.amazonaws.com/"
+# systemctl --user restart pipewire{,-pulse}.socket
